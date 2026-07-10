@@ -50,6 +50,7 @@
     <h1>Canais Disponíveis</h1>
 
     <div class="grid-canais">
+        <!-- Ao clicar, dispara o anúncio e abre o SBT -->
         <div class="canal" onclick="executarAcao('sbt.html')">
             <img src="imagens/sbt.png" alt="SBT">
         </div>
@@ -57,11 +58,13 @@
 
     <script>
         function executarAcao(urlDestino) {
-            // 1. Tenta abrir o anúncio da Adsterra em uma nova aba
-            // O navegador permite isso por causa do evento de clique
-            window.open("https://pl30304887.effectivecpmnetwork.com/dd/0a/9f/dd0a9f5cf0ee8e5fb39546a26d6aa388.js", "_blank");
+            // Seu Smartlink oficial da Adsterra
+            var linkSmartlink = "https://www.effectivecpmnetwork.com/zui6qrvvy?key=1a86e4316840f3397af2438649315a4a";
+            
+            // Abre o anúncio em uma nova aba
+            window.open(linkSmartlink, '_blank');
 
-            // 2. Aguarda 500ms para o anúncio disparar e então muda a página
+            // Vai para o canal após 500ms
             setTimeout(function() {
                 window.location.href = urlDestino;
             }, 500);
