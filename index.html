@@ -50,25 +50,13 @@
     <h1>Canais Disponíveis</h1>
 
     <div class="grid-canais">
-        <!-- Ao clicar, dispara o anúncio e abre o SBT -->
-        <div class="canal" onclick="executarAcao('sbt.html')">
-            <img src="imagens/sbt.png" alt="SBT">
-        </div>
+        <!-- O link agora chama o anúncio diretamente na página -->
+        <a href="https://www.effectivecpmnetwork.com/zui6qrvvy?key=1a86e4316840f3397af2438649315a4a" target="_blank" onclick="setTimeout(function(){ window.location.href='sbt.html'; }, 1000);">
+            <div class="canal">
+                <img src="imagens/sbt.png" alt="SBT">
+            </div>
+        </a>
     </div>
 
-    <script>
-        function executarAcao(urlDestino) {
-            // Seu Smartlink oficial da Adsterra
-            var linkSmartlink = "https://www.effectivecpmnetwork.com/zui6qrvvy?key=1a86e4316840f3397af2438649315a4a";
-            
-            // Abre o anúncio em uma nova aba
-            window.open(linkSmartlink, '_blank');
-
-            // Vai para o canal após 500ms
-            setTimeout(function() {
-                window.location.href = urlDestino;
-            }, 500);
-        }
-    </script>
 </body>
 </html>
