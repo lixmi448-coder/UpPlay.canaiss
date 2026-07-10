@@ -19,11 +19,17 @@
             align-items: center;
         }
         
-        /* Aumentei o espaço aqui para o banner não tocar no texto */
+        /* Ajustes do container e remoção da borda */
         .banner-container {
             width: 300px;
-            height: 260px; /* Um pouco maior que o anúncio */
-            margin-bottom: 30px; /* Espaço maior abaixo do banner */
+            height: 250px;
+            margin-bottom: 50px; /* Aumentei a margem para descer o texto */
+            border: none;        /* Remove qualquer borda */
+        }
+
+        /* Força o iframe a não ter borda */
+        iframe[src*="highperformanceformat"] {
+            border: none !important;
         }
 
         .btn-voltar { display: block; margin-top: 20px; padding: 10px; background: #00d4ff; text-decoration: none; color: black; font-weight: bold; text-align: center; border-radius: 5px; }
