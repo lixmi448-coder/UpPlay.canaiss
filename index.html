@@ -14,7 +14,22 @@
             padding: 20px;
         }
 
-        h1 { margin-left: 20px; }
+        .header-container { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin-bottom: 30px; 
+        }
+
+        h1 { margin-bottom: 20px; }
+
+        /* Estilo da caixa do anúncio */
+        .banner-ad { 
+            margin: 20px 0; 
+            min-height: 90px; 
+            display: flex; 
+            justify-content: center; 
+        }
 
         .grid-canais { 
             display: flex; 
@@ -31,9 +46,7 @@
             transition: 0.3s;
         }
 
-        .canal:hover { 
-            transform: scale(1.1); 
-        }
+        .canal:hover { transform: scale(1.1); }
 
         .canal img { 
             width: 100%; 
@@ -47,15 +60,29 @@
 </head>
 <body>
 
-    <h1>Canais Disponíveis</h1>
+    <div class="header-container">
+        <h1>Canais Disponíveis</h1>
+        
+        <!-- Banner de Anúncio Adsterra -->
+        <div class="banner-ad">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '1a86e4316840f3397af2438649315a4a',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.effectivecpmnetwork.com/1a86e4316840f3397af2438649315a4a/invoke.js"></script>
+        </div>
+    </div>
 
     <div class="grid-canais">
-        <!-- O link agora chama o anúncio diretamente na página -->
-        <a href="https://www.effectivecpmnetwork.com/zui6qrvvy?key=1a86e4316840f3397af2438649315a4a" target="_blank" onclick="setTimeout(function(){ window.location.href='sbt.html'; }, 1000);">
-            <div class="canal">
-                <img src="imagens/sbt.png" alt="SBT">
-            </div>
-        </a>
+        <!-- Ao clicar, vai direto para o canal -->
+        <div class="canal" onclick="window.location.href='sbt.html'">
+            <img src="imagens/sbt.png" alt="SBT">
+        </div>
     </div>
 
 </body>
