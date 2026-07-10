@@ -6,29 +6,37 @@
     <style>
         body { margin: 0; background: #000; color: white; font-family: sans-serif; display: flex; height: 100vh; }
         
+        /* Coluna da Esquerda (Vídeo) */
         .video-box { flex: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         iframe { width: 80%; height: 500px; border-radius: 15px; border: 4px solid #fff; }
         
-        /* Ajuste na Lateral */
+        /* Coluna da Direita (Anúncios/Prog) */
         .sidebar { 
             flex: 1; 
             background: #1a1a1a; 
             padding: 20px; 
-            border-left: 2px solid #00d4ff; 
+            border-left: 2px solid #00d4ff;
             display: flex; 
             flex-direction: column;
-            align-items: center; /* Centraliza o banner */
+            align-items: center;
+            gap: 20px;
         }
-        
-        .btn-voltar { display: block; margin-top: 20px; padding: 10px; background: #00d4ff; text-decoration: none; color: black; font-weight: bold; text-align: center; border-radius: 5px; }
         
         /* Container do Banner */
-        .banner-box {
+        .banner-container {
             width: 300px;
             height: 250px;
-            margin-bottom: 20px;
-            position: relative; /* Isso trava o banner no lugar */
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
+        .btn-voltar { display: block; margin-top: 20px; padding: 10px; background: #00d4ff; text-decoration: none; color: black; font-weight: bold; text-align: center; border-radius: 5px; }
+        
+        .programacao { width: 100%; text-align: left; }
     </style>
 </head>
 <body>
@@ -39,8 +47,8 @@
     </div>
 
     <div class="sidebar">
-        <!-- Banner travado dentro do container -->
-        <div class="banner-box">
+        <!-- Banner no topo -->
+        <div class="banner-container">
             <script type="text/javascript">
                 atOptions = {
                     'key' : '3bd1bd43807e15df794b97ccde0fed87',
@@ -53,7 +61,8 @@
             <script type="text/javascript" src="https://www.highperformanceformat.com/3bd1bd43807e15df794b97ccde0fed87/invoke.js"></script>
         </div>
 
-        <div style="width: 100%;">
+        <!-- Programação abaixo -->
+        <div class="programacao">
             <h3>Programação</h3>
             <p>14:00 - Fofocalizando</p>
             <hr>
