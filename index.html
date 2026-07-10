@@ -1,58 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>UpTV - Início</title>
-    <style>
-        body { margin: 0; background-image: url('fundo.png'); background-attachment: fixed; background-size: cover; color: white; font-family: sans-serif; text-align: center; }
-        
-        /* Grade de logos na tela inicial */
-        .grid-canais { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; padding: 50px; max-width: 1000px; margin: auto; }
-        .canal-item { cursor: pointer; transition: 0.3s; }
-        .canal-item:hover { transform: scale(1.1); }
-        .canal-item img { width: 100%; border-radius: 15px; border: 2px solid #00d4ff; }
-
-        /* Área do Player (escondida por padrão) */
-        #player-area { display: none; padding: 20px; }
-        .voltar { margin-top: 20px; padding: 10px 20px; background: #00d4ff; color: black; border: none; cursor: pointer; font-weight: bold; }
-    </style>
+    <title>UpPlay Canais</title>
 </head>
-<body>
+<body style="background-color: #001a4d; color: white; text-align: center;">
 
-    <div id="home">
-        <h1>Escolha um canal</h1>
-        <div class="grid-canais">
-            <div class="canal-item" onclick="carregarCanal('https://www.youtube.com/embed/LLpNUqHVam8', 'SBT')">
-                <img src="sbt.png" alt="SBT">
-            </div>
-            <div class="canal-item" onclick="alert('Canal em breve!')">
-                <img src="globo.png" alt="Globo">
-            </div>
-        </div>
-    </div>
+    <h1>Bem-vindo ao UpPlay</h1>
+    <p>Se você está vendo isso, o arquivo salvou corretamente!</p>
+    
+    <img src="imagens/sbt.png" alt="SBT">
 
-    <div id="player-area">
-        <h2 id="nome-canal"></h2>
-        <div style="background: rgba(0,0,0,0.8); padding: 10px; border-radius: 12px; display: inline-block;">
-            <iframe id="iframe-canal" width="800" height="450" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <br>
-        <button class="voltar" onclick="voltarHome()">Voltar para Menu</button>
-    </div>
-
-    <script>
-        function carregarCanal(url, nome) {
-            document.getElementById('home').style.display = 'none';
-            document.getElementById('player-area').style.display = 'block';
-            document.getElementById('iframe-canal').src = url;
-            document.getElementById('nome-canal').innerText = nome;
-        }
-
-        function voltarHome() {
-            document.getElementById('home').style.display = 'block';
-            document.getElementById('player-area').style.display = 'none';
-            document.getElementById('iframe-canal').src = ""; // Para o vídeo
-        }
-    </script>
 </body>
 </html>
