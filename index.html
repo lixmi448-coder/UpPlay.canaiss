@@ -23,7 +23,6 @@
 
         h1 { margin-bottom: 20px; }
 
-        /* Estilo da caixa do anúncio */
         .banner-ad { 
             margin: 20px 0; 
             min-height: 90px; 
@@ -35,26 +34,37 @@
             display: flex; 
             justify-content: flex-start; 
             flex-wrap: wrap; 
-            gap: 20px; 
+            gap: 30px; /* Aumentei um pouco o gap para caber o texto */
             padding: 20px;
         }
 
+        /* Contêiner que agrupa a imagem e o texto */
         .canal { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
             cursor: pointer; 
             width: 150px; 
-            height: 150px; 
             transition: 0.3s;
         }
 
         .canal:hover { transform: scale(1.1); }
 
         .canal img { 
-            width: 100%; 
-            height: 100%; 
+            width: 150px; 
+            height: 150px; 
             border-radius: 15px; 
             border: 3px solid #00d4ff; 
             background-color: white; 
             object-fit: cover; 
+        }
+
+        /* Estilo do nome abaixo da logo */
+        .nome-canal {
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px #000;
         }
     </style>
 </head>
@@ -63,7 +73,6 @@
     <div class="header-container">
         <h1>Canais Disponíveis</h1>
         
-        <!-- Banner de Anúncio Adsterra -->
         <div class="banner-ad">
             <script type="text/javascript">
                 atOptions = {
@@ -79,19 +88,28 @@
     </div>
 
     <div class="grid-canais">
-        <!-- Canal SBT -->
+        <!-- SBT -->
         <div class="canal" onclick="window.location.href='sbt.html'">
             <img src="imagens/sbt.png" alt="SBT">
+            <span class="nome-canal">SBT</span>
         </div>
 
-        <!-- Canal Record -->
+        <!-- Record -->
         <div class="canal" onclick="window.location.href='record.html'">
             <img src="imagens/record.png" alt="Record TV">
+            <span class="nome-canal">Record TV</span>
         </div>
 
-        <!-- Canal TV Brasil -->
+        <!-- TV Brasil -->
         <div class="canal" onclick="window.location.href='tvbrasil.html'">
             <img src="imagens/tvbrasil.png" alt="TV Brasil">
+            <span class="nome-canal">TV Brasil</span>
+        </div>
+
+        <!-- CNN Brasil -->
+        <div class="canal" onclick="window.location.href='cnnbrasil.html'">
+            <img src="imagens/cnnbrasil.png" alt="CNN Brasil">
+            <span class="nome-canal">CNN Brasil</span>
         </div>
     </div>
 
