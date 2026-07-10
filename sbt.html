@@ -26,28 +26,39 @@
             display: flex; 
             flex-direction: column;
             align-items: center;
-            overflow-y: auto; /* Permite rolar se a lista for grande */
+            overflow-y: auto;
         }
         
         .banner-container {
             width: 300px;
             height: 250px;
-            margin-bottom: 40px !important;
+            margin-bottom: 80px !important; /* Espaço maior aqui para empurrar tudo */
             flex-shrink: 0;
         }
 
         .btn-voltar { display: block; margin-top: 20px; padding: 10px; background: #00d4ff; text-decoration: none; color: black; font-weight: bold; text-align: center; border-radius: 5px; }
         
-        /* Caixa de texto fixa */
-        .info-box { 
+        /* Ajuste da Lista */
+        .lista-programas { 
             width: 90%; 
-            text-align: center; 
-            margin-top: 20px !important; 
+            text-align: left; 
+            margin-top: 20px;
             color: #fff;
             font-size: 14px;
         }
         
-        ul { text-align: left; padding-left: 20px; margin-top: 10px; }
+        /* O "Mini Texto" agora está bem separado lá embaixo */
+        .info-fixa { 
+            width: 90%; 
+            text-align: center; 
+            margin-top: 40px; 
+            padding-top: 20px;
+            border-top: 1px solid #00d4ff;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+        
+        ul { padding-left: 20px; margin-top: 10px; }
         li { margin-bottom: 5px; }
     </style>
 </head>
@@ -72,9 +83,7 @@
             <script type="text/javascript" src="https://www.highperformanceformat.com/3bd1bd43807e15df794b97ccde0fed87/invoke.js"></script>
         </div>
 
-        <div class="info-box">
-            <p>Gostou da transmissão? Compartilhe com os amigos! Siga a gente nas redes sociais. Problemas na imagem? Tente recarregar a página.</p>
-            <hr>
+        <div class="lista-programas">
             <h3>Programações diárias:</h3>
             <ul>
                 <li>SBT Notícias</li>
@@ -86,6 +95,10 @@
                 <li>Programa Silvio Santos</li>
                 <li>Cinema em Casa</li>
             </ul>
+        </div>
+
+        <div class="info-fixa">
+            <p>Gostou da transmissão? Compartilhe com os amigos! Siga a gente nas redes sociais. Problemas na imagem? Tente recarregar a página.</p>
         </div>
     </div>
 </body>
