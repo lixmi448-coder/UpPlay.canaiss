@@ -18,9 +18,7 @@
 
         .grid-canais { 
             display: flex; 
-            /* Alinha os itens à esquerda, como um catálogo */
             justify-content: flex-start; 
-            /* Permite que, ao adicionar mais canais, eles pulem para a linha de baixo */
             flex-wrap: wrap; 
             gap: 20px; 
             padding: 20px;
@@ -28,7 +26,6 @@
 
         .canal { 
             cursor: pointer; 
-            /* Aumentei o tamanho de 100px para 150px */
             width: 150px; 
             height: 150px; 
             transition: 0.3s;
@@ -44,7 +41,7 @@
             border-radius: 15px; 
             border: 3px solid #00d4ff; 
             background-color: white; 
-            object-fit: cover; /* Faz a imagem preencher o quadrado todo */
+            object-fit: cover; 
         }
     </style>
 </head>
@@ -53,17 +50,21 @@
     <h1>Canais Disponíveis</h1>
 
     <div class="grid-canais">
-        <!-- Ícone SBT -->
-        <div class="canal" onclick="ativarAnuncio('sbt.html')">
+        <div class="canal" onclick="executarAcao('sbt.html')">
             <img src="imagens/sbt.png" alt="SBT">
         </div>
-        
-        <!-- Quando tiver mais canais, é só copiar e colar essa div aqui dentro -->
     </div>
 
     <script>
-        function ativarAnuncio(urlDestino) {
-            window.location.href = urlDestino;
+        function executarAcao(urlDestino) {
+            // 1. Tenta abrir o anúncio da Adsterra em uma nova aba
+            // O navegador permite isso por causa do evento de clique
+            window.open("https://pl30304887.effectivecpmnetwork.com/dd/0a/9f/dd0a9f5cf0ee8e5fb39546a26d6aa388.js", "_blank");
+
+            // 2. Aguarda 500ms para o anúncio disparar e então muda a página
+            setTimeout(function() {
+                window.location.href = urlDestino;
+            }, 500);
         }
     </script>
 </body>
