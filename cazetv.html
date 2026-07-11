@@ -14,18 +14,8 @@
         }
         
         .video-box { flex: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        
-        /* Botão para o vídeo oficial quando o iframe é bloqueado */
-        .btn-assistir { 
-            padding: 20px 40px; 
-            background: #ff0000; 
-            color: white; 
-            text-decoration: none; 
-            font-size: 24px; 
-            font-weight: bold; 
-            border-radius: 10px; 
-            border: 2px solid white;
-        }
+        /* Player ajustado para o modo proxy */
+        iframe { width: 80%; height: 500px; border-radius: 15px; border: 4px solid #fff; }
         
         .sidebar { 
             flex: 1; 
@@ -47,15 +37,25 @@
 
         .conteudo-abaixo {
             width: 90%;
-            margin-top: 50px; 
+            margin-top: 300px !important; 
             text-align: center;
         }
 
         .btn-voltar { display: block; margin-top: 20px; padding: 10px; background: #00d4ff; text-decoration: none; color: black; font-weight: bold; text-align: center; border-radius: 5px; }
         
-        .lista-programas { text-align: left; color: #fff; font-size: 14px; }
+        .lista-programas { 
+            text-align: left;
+            color: #fff;
+            font-size: 14px;
+        }
         
-        .info-fixa { margin-top: 40px; padding-top: 20px; border-top: 1px solid #00d4ff; font-size: 13px; opacity: 0.8; }
+        .info-fixa { 
+            margin-top: 40px; 
+            padding-top: 20px;
+            border-top: 1px solid #00d4ff;
+            font-size: 13px;
+            opacity: 0.8;
+        }
         
         ul { padding-left: 20px; margin-top: 10px; }
         li { margin-bottom: 5px; }
@@ -64,8 +64,8 @@
 <body>
     <div class="video-box">
         <h2>Cazé TV AO VIVO</h2>
-        <p>A exibição direta foi restringida pelo YouTube.</p>
-        <a href="https://www.youtube.com/watch?v=54apQSJpf0A" target="_blank" class="btn-assistir">ASSISTIR NO YOUTUBE</a>
+        <!-- Player via Proxy de Terceiros -->
+        <iframe src="https://www.cxtv.com.br/tv-ao-vivo/caze-tv-br" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <a href="index.html" class="btn-voltar">Voltar ao Menu</a>
     </div>
 
@@ -99,7 +99,7 @@
             </div>
 
             <div class="info-fixa">
-                <p>Gostou da transmissão? Compartilhe com os amigos! Problemas na imagem? Tente recarregar a página.</p>
+                <p>Gostou da transmissão? Compartilhe com os amigos! Siga a gente nas redes sociais. Problemas na imagem? Tente recarregar a página.</p>
             </div>
         </div>
     </div>
