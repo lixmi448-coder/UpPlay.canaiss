@@ -70,9 +70,33 @@
             text-shadow: 1px 1px 2px #000;
         }
 
+        /* Estilo da nova fileira de Desenho */
+        .linha-aba { 
+            margin-top: 50px; 
+            width: 100%; 
+            display: flex; 
+            justify-content: center; 
+        }
+
+        .aba-desenho { 
+            cursor: pointer; 
+            transition: 0.3s; 
+        }
+        
+        .aba-desenho:hover { transform: scale(1.05); }
+
+        .aba-desenho img { 
+            width: 320px; 
+            height: 120px; 
+            border-radius: 15px; 
+            border: 3px solid #00d4ff; 
+            object-fit: cover; 
+        }
+
         @media (max-width: 600px) {
             .canal { width: 120px; }
             .canal img { width: 120px; height: 120px; }
+            .aba-desenho img { width: 260px; height: 100px; }
         }
     </style>
 </head>
@@ -124,6 +148,13 @@
         <div class="canal" onclick="window.location.href='cazetv.html'">
             <img src="imagens/cazetv.png" alt="Caze TV">
             <span class="nome-canal">Caze TV</span>
+        </div>
+    </div>
+
+    <!-- Nova fileira de Desenho -->
+    <div class="linha-aba">
+        <div class="aba-desenho" onclick="window.location.href='desenho.html'">
+            <img src="imagens/desenho.png" alt="Desenhos">
         </div>
     </div>
 
