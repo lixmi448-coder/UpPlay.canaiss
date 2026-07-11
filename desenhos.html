@@ -9,7 +9,6 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            /* Fundo configurado com a imagem fundo3.png da pasta imagens */
             background: url('imagens/fundo3.png') no-repeat center center fixed;
             background-size: cover;
             display: flex;
@@ -20,12 +19,44 @@
             font-family: sans-serif;
         }
         
-        h1 {
-            text-shadow: 2px 2px 4px #000;
-        }
+        h1 { text-shadow: 2px 2px 4px #000; margin-bottom: 30px; }
         
+        /* Estilo para a grade de canais dentro da página de desenhos */
+        .grid-desenhos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .canal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .canal:hover { transform: scale(1.1); }
+
+        .canal img {
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            border: 3px solid #00d4ff;
+            background-color: white;
+            object-fit: cover;
+        }
+
+        .nome-canal {
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px #000;
+        }
+
         .btn-voltar {
-            margin-top: 30px;
+            margin-top: 50px;
             padding: 15px 30px;
             background: #00d4ff;
             text-decoration: none;
@@ -36,19 +67,21 @@
             transition: 0.3s;
         }
 
-        .btn-voltar:hover {
-            transform: scale(1.1);
-            background: white;
-        }
+        .btn-voltar:hover { transform: scale(1.1); background: white; }
     </style>
 </head>
 <body>
 
     <h1>Seção de Desenhos</h1>
-    <p>Escolha o seu conteúdo abaixo:</p>
-
-    <!-- Adicione seus links de desenhos aqui -->
     
+    <div class="grid-desenhos">
+        <!-- Canal Tom e Jerry -->
+        <div class="canal" onclick="window.location.href='tom.html'">
+            <img src="imagens/tom (2).png" alt="Tom e Jerry">
+            <span class="nome-canal">Tom e Jerry</span>
+        </div>
+    </div>
+
     <a href="index.html" class="btn-voltar">Voltar ao Menu</a>
 
 </body>
