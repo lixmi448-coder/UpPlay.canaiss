@@ -3,105 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Cazé TV Ao Vivo</title>
+    <!-- Carrega a biblioteca do player -->
+    <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
     <style>
         body { 
             margin: 0; 
-            background-color: #0a192f !important; 
+            background-color: #0a192f; 
             color: white; 
             font-family: sans-serif; 
             display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
             height: 100vh; 
         }
         
-        .video-box { flex: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        /* Player ajustado para o modo proxy */
-        iframe { width: 80%; height: 500px; border-radius: 15px; border: 4px solid #fff; }
-        
-        .sidebar { 
-            flex: 1; 
-            background-color: #112240 !important; 
-            padding: 20px; 
-            border-left: 2px solid #00d4ff;
+        .video-box { 
             display: flex; 
-            flex-direction: column;
-            align-items: center;
-            overflow-y: auto;
+            flex-direction: column; 
+            align-items: center; 
+            width: 100%; 
         }
         
-        .banner-container {
-            width: 300px;
-            height: 250px;
-            flex-shrink: 0;
-            margin-bottom: 20px;
-        }
-
-        .conteudo-abaixo {
-            width: 90%;
-            margin-top: 300px !important; 
-            text-align: center;
-        }
-
-        .btn-voltar { display: block; margin-top: 20px; padding: 10px; background: #00d4ff; text-decoration: none; color: black; font-weight: bold; text-align: center; border-radius: 5px; }
-        
-        .lista-programas { 
-            text-align: left;
-            color: #fff;
-            font-size: 14px;
+        /* Player estilizado e responsivo */
+        .video-js { 
+            width: 80% !important; 
+            max-width: 800px; 
+            height: 450px !important; 
+            border-radius: 15px; 
+            border: 4px solid #fff; 
         }
         
-        .info-fixa { 
-            margin-top: 40px; 
-            padding-top: 20px;
-            border-top: 1px solid #00d4ff;
-            font-size: 13px;
-            opacity: 0.8;
+        .btn-voltar { 
+            margin-top: 20px; 
+            padding: 12px 25px; 
+            background: #00d4ff; 
+            text-decoration: none; 
+            color: black; 
+            font-weight: bold; 
+            border-radius: 5px; 
         }
-        
-        ul { padding-left: 20px; margin-top: 10px; }
-        li { margin-bottom: 5px; }
     </style>
 </head>
 <body>
+
     <div class="video-box">
         <h2>Cazé TV AO VIVO</h2>
-        <!-- Player via Proxy de Terceiros -->
-        <iframe src="https://cdn.tvivu.com/logos/cazetv-160.webp" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        
+        <!-- Player configurado com o link direto da Cazé TV -->
+        <video id="meu-player" class="video-js vjs-default-skin vjs-big-play-centered" controls autoplay>
+            <source src="https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8" type="application/x-mpegURL">
+        </video>
+        
         <a href="index.html" class="btn-voltar">Voltar ao Menu</a>
     </div>
 
-    <div class="sidebar">
-        <div class="banner-container">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '3bd1bd43807e15df794b97ccde0fed87',
-                    'format' : 'iframe',
-                    'height' : 250,
-                    'width' : 300,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="https://www.highperformanceformat.com/3bd1bd43807e15df794b97ccde0fed87/invoke.js"></script>
-        </div>
-
-        <div class="conteudo-abaixo">
-            <div class="lista-programas">
-                <h3>Programações diárias:</h3>
-                <ul>
-                    <li>Cazé News</li>
-                    <li>Sessão Animação</li>
-                    <li>Documentários Especiais</li>
-                    <li>Cazé Entretenimento</li>
-                    <li>Séries Independentes</li>
-                    <li>Cine Cazé</li>
-                    <li>Musicais e Shows</li>
-                    <li>Cazé na Madrugada</li>
-                </ul>
-            </div>
-
-            <div class="info-fixa">
-                <p>Gostou da transmissão? Compartilhe com os amigos! Siga a gente nas redes sociais. Problemas na imagem? Tente recarregar a página.</p>
-            </div>
-        </div>
-    </div>
+    <!-- Script necessário para rodar o vídeo -->
+    <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
 </body>
 </html>
