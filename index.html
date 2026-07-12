@@ -74,34 +74,51 @@
             text-shadow: 1px 1px 2px #000;
         }
 
-        /* Estilo da nova fileira de Desenho - MAIOR E RETANGULAR */
+        /* Estilo da fileira de abas - LADO A LADO */
         .linha-aba { 
-            margin-top: 50px; 
+            margin-top: 30px; 
             width: 100%; 
             display: flex; 
-            justify-content: center; 
+            flex-direction: row; 
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        .aba-desenho { 
+        .aba { 
             cursor: pointer; 
             transition: 0.3s; 
         }
         
-        .aba-desenho:hover { transform: scale(1.05); }
+        .aba:hover { transform: scale(1.05); }
 
-        .aba-desenho img { 
+        .aba img { 
             width: 400px; 
             height: 150px; 
             border-radius: 15px; 
             border: 3px solid #00d4ff; 
             background-color: white;
-            object-fit: contain; /* Garante que a imagem inteira apareça */
+            object-fit: contain; 
+        }
+
+        /* Rodapé minimalista */
+        .footer-data {
+            text-align: center;
+            font-size: 9px;
+            color: #555;
+            margin-top: 50px;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 900px) {
+            .aba img { width: 280px; height: 105px; }
         }
 
         @media (max-width: 600px) {
             .canal { width: 120px; }
             .canal img { width: 120px; height: 120px; }
-            .aba-desenho img { width: 280px; height: 105px; }
+            .aba img { width: 280px; height: 105px; }
         }
     </style>
 </head>
@@ -124,44 +141,34 @@
         </div>
     </div>
 
+    <!-- Grid Superior -->
     <div class="grid-canais">
-        <!-- SBT -->
-        <div class="canal" onclick="window.location.href='sbt.html'">
-            <img src="imagens/sbt.png" alt="SBT">
-            <span class="nome-canal">SBT</span>
-        </div>
-
-        <!-- Record -->
-        <div class="canal" onclick="window.location.href='record.html'">
-            <img src="imagens/record.png" alt="Record TV">
-            <span class="nome-canal">Record TV</span>
-        </div>
-
-        <!-- TV Brasil -->
-        <div class="canal" onclick="window.location.href='tvbrasil.html'">
-            <img src="imagens/tvbrasil.png" alt="TV Brasil">
-            <span class="nome-canal">TV Brasil</span>
-        </div>
-
-        <!-- CNN Brasil -->
-        <div class="canal" onclick="window.location.href='cnnbrasil.html'">
-            <img src="imagens/cnnbrasil.png" alt="CNN Brasil">
-            <span class="nome-canal">CNN Brasil</span>
-        </div>
-
-        <!-- Caze TV -->
-        <div class="canal" onclick="window.location.href='cazetv.html'">
-            <img src="imagens/cazetv.png" alt="Caze TV">
-            <span class="nome-canal">Caze TV</span>
-        </div>
+        <div class="canal" onclick="window.location.href='sbt.html'"><img src="imagens/sbt.png"><span class="nome-canal">SBT</span></div>
+        <div class="canal" onclick="window.location.href='record.html'"><img src="imagens/record.png"><span class="nome-canal">Record TV</span></div>
+        <div class="canal" onclick="window.location.href='tvbrasil.html'"><img src="imagens/tvbrasil.png"><span class="nome-canal">TV Brasil</span></div>
+        <div class="canal" onclick="window.location.href='cnnbrasil.html'"><img src="imagens/cnnbrasil.png"><span class="nome-canal">CNN Brasil</span></div>
+        <div class="canal" onclick="window.location.href='cazetv.html'"><img src="imagens/cazetv.png"><span class="nome-canal">Caze TV</span></div>
+        <div class="canal" onclick="window.location.href='tvcultura.html'"><img src="imagens/tvcultura.png"><span class="nome-canal">TV Cultura</span></div>
     </div>
 
-    <!-- Nova fileira de Desenho -->
+    <!-- Abas lado a lado -->
     <div class="linha-aba">
-        <div class="aba-desenho" onclick="window.location.href='desenhos.html'">
-            <img src="imagens/desenhos.png" alt="Desenhos">
-        </div>
+        <div class="aba" onclick="window.location.href='desenhos.html'"><img src="imagens/desenhos.png" alt="Desenhos"></div>
+        <div class="aba" onclick="window.location.href='canaisbr.html'"><img src="imagens/canaisbr.png" alt="Canais BR"></div>
     </div>
+
+    <!-- Grid Inferior -->
+    <div class="grid-canais" style="margin-top: 40px;">
+        <div class="canal" onclick="window.location.href='lifeamerica.html'"><img src="imagens/lifeamerica.png"><span class="nome-canal">Life America</span></div>
+        <div class="canal" onclick="window.location.href='passofundo.html'"><img src="imagens/passofundo.png"><span class="nome-canal">Passo Fundo</span></div>
+        <div class="canal" onclick="window.location.href='tvaldeia.html'"><img src="imagens/tvaldeia.png"><span class="nome-canal">TV Aldeia</span></div>
+        <div class="canal" onclick="window.location.href='tvvideonews.html'"><img src="imagens/tvvideonews.png"><span class="nome-canal">TV Video News</span></div>
+        <div class="canal" onclick="window.location.href='tvmax.html'"><img src="imagens/tvmax.png"><span class="nome-canal">TV Max</span></div>
+        <div class="canal" onclick="window.location.href='tvsuldeminas.html'"><img src="imagens/tvsuldeminas.png"><span class="nome-canal">Sul de Minas</span></div>
+    </div>
+
+    <!-- Data da atualização -->
+    <div class="footer-data">Última atualização: 12/07/2026</div>
 
 </body>
 </html>
