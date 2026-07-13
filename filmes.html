@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes - UPTVs CANAISS</title>
+
+    <style>
+        body { 
+            margin: 0; 
+            background: url('imagens/fundo2.png') no-repeat left top fixed; 
+            background-size: cover; 
+            font-family: sans-serif; 
+            color: white; 
+            padding: 20px;
+        }
+
+        h1 { text-align: center; text-shadow: 2px 2px 4px #000; margin-bottom: 30px; }
+
+        .btn-voltar {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: #00d4ff;
+            color: black;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .grid-canais { 
+            display: flex; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            gap: 30px; 
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .canal { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            cursor: pointer; 
+            width: 150px; 
+            transition: 0.3s;
+        }
+
+        .canal:hover { transform: scale(1.1); }
+
+        .canal img { 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 15px; 
+            border: 3px solid #00d4ff; 
+            background-color: white; 
+            object-fit: cover; 
+        }
+
+        .nome-canal {
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px #000;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="btn-voltar">← Voltar</a>
+    <h1>Lista de Filmes</h1>
+
+    <div class="grid-canais">
+        <div class="canal" onclick="window.location.href='adrenalinapura.html'"><img src="imagens/adrenalinapura.png"><span class="nome-canal">Adrenalina Pura</span></div>
+        <div class="canal" onclick="window.location.href='cidadebrasil.html'"><img src="imagens/cidadebrasil.png"><span class="nome-canal">Cidade Brasil</span></div>
+        <div class="canal" onclick="window.location.href='cinepix.html'"><img src="imagens/cinepix.png"><span class="nome-canal">Cinepix</span></div>
+        <div class="canal" onclick="window.location.href='Grjngo.html'"><img src="imagens/Grjngo.png"><span class="nome-canal">Grjngo</span></div>
+        <div class="canal" onclick="window.location.href='osjet.html'"><img src="imagens/osjet.png"><span class="nome-canal">Osjet</span></div>
+        <div class="canal" onclick="window.location.href='redeclouding.html'"><img src="imagens/redeclouding.png"><span class="nome-canal">Rede Clouding</span></div>
+        <div class="canal" onclick="window.location.href='sessaotrash.html'"><img src="imagens/sessaotrash.png"><span class="nome-canal">Sessão Trash</span></div>
+        <div class="canal" onclick="window.location.href='sonycinema.html'"><img src="imagens/sonycinema.png"><span class="nome-canal">Sony Cinema</span></div>
+        <div class="canal" onclick="window.location.href='sonyoneemo.html'"><img src="imagens/sonyoneemo.png"><span class="nome-canal">Sony Oneemo</span></div>
+        <div class="canal" onclick="window.location.href='tvloading.html'"><img src="imagens/tvloading.png"><span class="nome-canal">TV Loading</span></div>
+        <div class="canal" onclick="window.location.href='webtvcine.html'"><img src="imagens/webtvcine.png"><span class="nome-canal">WebTV Cine</span></div>
+        <div class="canal" onclick="window.location.href='wording.html'"><img src="imagens/wording.png"><span class="nome-canal">Wording</span></div>
+    </div>
+
+</body>
+</html>
