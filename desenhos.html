@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desenhos</title>
+
+    <!-- Script Popunder Adsterra configurado -->
+    <script src="https://pl30304887.effectivecpmnetwork.com/dd/0a/9f/dd0a9f5cf0ee8e5fb39546a26d6aa388.js"></script>
+
     <style>
         body {
             margin: 0;
             padding: 0;
-            height: 100vh;
-            /* Ajustado para carregar a imagem começando pelo canto esquerdo superior */
+            min-height: 100vh;
             background: url('imagens/fundo3.png') no-repeat left top fixed;
             background-size: cover;
             display: flex;
@@ -18,6 +21,7 @@
             justify-content: center;
             color: white;
             font-family: sans-serif;
+            padding-bottom: 50px;
         }
         
         h1 { text-shadow: 2px 2px 4px #000; margin-bottom: 30px; }
@@ -28,6 +32,7 @@
             flex-wrap: wrap;
             gap: 30px;
             padding: 20px;
+            max-width: 1000px;
         }
 
         .canal {
@@ -36,6 +41,7 @@
             align-items: center;
             cursor: pointer;
             transition: 0.3s;
+            width: 150px;
         }
 
         .canal:hover { transform: scale(1.1); }
@@ -54,6 +60,7 @@
             font-size: 14px;
             font-weight: bold;
             text-shadow: 1px 1px 2px #000;
+            text-align: center;
         }
 
         .btn-voltar {
@@ -76,22 +83,36 @@
     <h1>Seção de Desenhos</h1>
     
     <div class="grid-desenhos">
-        <!-- Canal Tom e Jerry -->
+        <!-- Canais Originais -->
         <div class="canal" onclick="window.location.href='tom.html'">
             <img src="imagens/tom (2).png" alt="Tom e Jerry">
             <span class="nome-canal">Tom e Jerry</span>
         </div>
 
-        <!-- Canal Pica-Pau -->
         <div class="canal" onclick="window.location.href='picapau.html'">
             <img src="imagens/picapau.png" alt="Pica-Pau">
             <span class="nome-canal">Pica-Pau</span>
         </div>
 
-        <!-- Canal BOOMERANG -->
         <div class="canal" onclick="window.location.href='boomerang.html'">
             <img src="imagens/boomerang.png" alt="BOOMERANG">
             <span class="nome-canal">BOOMERANG</span>
+        </div>
+
+        <!-- Novos Canais -->
+        <div class="canal" onclick="window.location.href='wording.html'">
+            <img src="imagens/wording.png" alt="Wording">
+            <span class="nome-canal">Wording</span>
+        </div>
+
+        <div class="canal" onclick="window.location.href='osjet.html'">
+            <img src="imagens/osjet.png" alt="Osjet">
+            <span class="nome-canal">Osjet</span>
+        </div>
+
+        <div class="canal" onclick="window.location.href='tvloading.html'">
+            <img src="imagens/tvloading.png" alt="TV Loading">
+            <span class="nome-canal">TV Loading</span>
         </div>
     </div>
 
