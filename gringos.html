@@ -8,10 +8,13 @@
         
         #btn-voltar { position: absolute; top: 10px; left: 10px; z-index: 999; cursor: pointer; font-size: 24px; color: white; text-decoration: none; background: #000055; padding: 5px 10px; border-radius: 5px; }
         
-        /* Ajuste: Lateral mais larga (450px) e Player menor */
         #sidebar { width: 450px; display: flex; flex-direction: column; border-right: 2px solid #000088; background: #000044; }
         
-        #topo-sidebar { height: 40%; padding: 30px 15px 15px 15px; border-bottom: 2px solid #000088; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        #topo-sidebar { height: 40%; padding: 20px; border-bottom: 2px solid #000088; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        
+        /* Indicador de Status */
+        #status-online { margin-top: 10px; font-size: 14px; display: flex; align-items: center; gap: 8px; color: #00ff00; font-weight: bold; }
+        .bolinha-verde { width: 12px; height: 12px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 10px #00ff00; }
         
         #lista-canais { height: 60%; overflow-y: auto; padding: 10px; }
         
@@ -29,13 +32,15 @@
 
     <div id="sidebar">
         <div id="topo-sidebar">
-            <script>
-                atOptions = { 'key' : '3bd1bd43807e15df794b97ccde0fed87', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
-            </script>
+            <!-- Banner -->
+            <script>atOptions = {'key':'3bd1bd43807e15df794b97ccde0fed87','format':'iframe','height':250,'width':300,'params':{}};</script>
             <script src="https://www.highperformanceformat.com/3bd1bd43807e15df794b97ccde0fed87/invoke.js"></script>
+            
+            <!-- Contador Dinâmico -->
+            <div id="status-online"><div class="bolinha-verde"></div> <span id="contagem">0 canais online</span></div>
         </div>
         
-        <div id="lista-canais">Carregando canais...</div>
+        <div id="lista-canais">Carregando...</div>
     </div>
 
     <div id="main-content">
@@ -43,32 +48,22 @@
     </div>
 
     <script>
-        // Mapeamento de bandeiras
-        const bandeiras = {
-            "Estados Unidos": "🇺🇸",
-            "Brasil": "🇧🇷",
-            "Portugal": "🇵🇹",
-            "Argentina": "🇦🇷",
-            "Espanha": "🇪🇸"
-            // Adicione outros países conforme necessário
-        };
+        const bandeiras = { "Estados Unidos": "🇺🇸", "Brasil": "🇧🇷", "Portugal": "🇵🇹", "Argentina": "🇦🇷", "Espanha": "🇪🇸" };
 
         fetch('canaisgringos.html/canais.json')
             .then(response => response.json())
             .then(dados => {
                 const container = document.getElementById('lista-canais');
+                const contador = document.getElementById('contagem');
                 container.innerHTML = ''; 
+                
+                let totalCanais = 0;
+                const chavesPais = Object.keys(dados).sort((a, b) => a === "Estados Unidos" ? -1 : 1);
 
-                // Garante que Estados Unidos apareça primeiro
-                const paises = Object.keys(dados).sort((a, b) => {
-                    if (a === "Estados Unidos") return -1;
-                    if (b === "Estados Unidos") return 1;
-                    return 0;
-                });
-
-                paises.forEach(pais => {
+                chavesPais.forEach(pais => {
                     const icone = bandeiras[pais] || "🌐";
                     for (let nomeCanal in dados[pais]) {
+                        totalCanais++;
                         let btn = document.createElement('button');
                         btn.className = 'canal-btn';
                         btn.innerHTML = `<span class="bandeira">${icone}</span> <span>${nomeCanal}</span>`;
@@ -76,10 +71,11 @@
                         container.appendChild(btn);
                     }
                 });
+
+                contador.innerText = `${totalCanais} canais online no momento`;
             })
             .catch(err => {
-                document.getElementById('lista-canais').innerHTML = 
-                '<p style="color:#ffaa00; text-align:center; padding:10px;">A lista de canais está sendo atualizada. Tente novamente em instantes.</p>';
+                document.getElementById('lista-canais').innerHTML = '<p style="color:#ffaa00; text-align:center;">Aguardando atualização dos servidores...</p>';
             });
     </script>
 </body>
