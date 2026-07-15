@@ -1,84 +1,69 @@
 import asyncio
-import aiohttp
 import json
 import os
 from playwright.async_api import async_playwright
 
-# Configuração de timeout e headers para evitar bloqueios
-HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'}
-
-async def testar_link(session, url):
-    try:
-        async with session.get(url, timeout=8, headers=HEADERS) as response:
-            return response.status in [200, 206, 301, 302]
-    except:
-        return False
+contexto_canal = {"nome": ""}
 
 async def run():
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
-        
-        print(">>> Iniciando varredura acumulativa...")
+        links_coletados = {}
+
+        # O MÁGICO: Agora capturamos TUDO que é identificado como recurso de mídia ou fetch dinâmico
+        async def interceptar_rede(request):
+            # Filtramos por tipos de recurso de mídia ou requisições que pareçam streams
+            resource_type = request.resource_type
+            url = request.url
+            
+            # Captura se for um recurso de mídia (vídeo/áudio) ou se a URL contiver 'stream' ou 'playlist'
+            # Isso pega m3u8, mpd, transmissões de youtube, etc.
+            if resource_type in ["media", "fetch", "xhr"] and any(x in url for x in ["stream", "playlist", "m3u8", "mpd", "video"]):
+                nome = contexto_canal["nome"]
+                if nome and nome not in links_coletados:
+                    links_coletados[nome] = url
+                    print(f"   [CAPTURA TOTAL] {nome}: {url}")
+
+        page.on("request", interceptar_rede)
+
+        print(">>> Iniciando varredura universal de streams...")
         await page.goto('https://famelack.com/tv/', wait_until='networkidle')
         
-        # Coleta a lista de países
         itens_pais = await page.query_selector_all('.country-item')
         codigos = [await item.get_attribute('data-country-code') for item in itens_pais if await item.get_attribute('data-country-code')]
         
-        dados_finais = {}
-        
-        async with aiohttp.ClientSession() as session:
-            for code in codigos:
-                print(f"-> Processando País: {code.upper()}")
-                await page.goto(f'https://famelack.com/tv/{code}/', wait_until='networkidle')
-                
-                # Técnica do Acumulador: Coleta enquanto rola para não perder itens descartados pelo site
-                canais_encontrados = await page.evaluate('''async () => {
-                    let todosCanais = new Map();
-                    let scrollStep = 1000;
-                    let lastHeight = 0;
-                    
-                    while (true) {
-                        let itens = document.querySelectorAll('li.sidebar-entry');
-                        itens.forEach(li => {
-                            let btn = li.querySelector('button');
-                            if (btn) {
-                                let nome = li.getAttribute('data-channel-name');
-                                let url = btn.getAttribute('data-video-url');
-                                if (nome && url) {
-                                    todosCanais.set(nome, url);
-                                }
-                            }
-                        });
-                        
-                        window.scrollBy(0, scrollStep);
-                        await new Promise(r => setTimeout(r, 800)); // Espera o carregamento
-                        
-                        let currentHeight = document.body.scrollHeight;
-                        if (currentHeight === lastHeight) break; 
-                        lastHeight = currentHeight;
-                    }
-                    return Array.from(todosCanais.entries()).map(([nome, url]) => ({nome, url}));
-                }''')
-                
-                print(f"   Coletados {len(canais_encontrados)} canais. Validando links...")
-                
-                lista_valida = {}
-                for canal in canais_encontrados:
-                    if await testar_link(session, canal['url']):
-                        lista_valida[canal['nome']] = canal['url']
-                
-                if lista_valida:
-                    dados_finais[code.upper()] = lista_valida
-                    print(f"   [OK] {len(lista_valida)} canais ativos salvos para {code.upper()}.")
+        resultado_final = {}
 
-        # Salva o resultado final
-        if not os.path.exists('canaisgringos.html'): os.makedirs('canaisgringos.html')
-        with open('canaisgringos.html/canais.json', 'w', encoding='utf-8') as f:
-            json.dump(dados_finais, f, indent=4, ensure_ascii=False)
+        for code in codigos:
+            print(f"-> Analisando país: {code.upper()}")
+            await page.goto(f'https://famelack.com/tv/{code}/', wait_until='networkidle')
             
-        print(">>> Varredura finalizada com todos os canais capturados e validados.")
+            # Força o scroll para renderizar a lista
+            await page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
+            await asyncio.sleep(2) 
+            
+            canais = await page.query_selector_all('li.sidebar-entry button')
+            
+            for canal in canais:
+                nome = await canal.get_attribute('data-channel-name')
+                contexto_canal["nome"] = nome
+                
+                try:
+                    await canal.click()
+                    # Aguarda um pouco mais para garantir que a rede dispare o stream
+                    await asyncio.sleep(2.0)
+                except:
+                    continue
+            
+            resultado_final[code.upper()] = links_coletados.copy()
+            links_coletados.clear()
+
+        if not os.path.exists('canaisgringos.html'): os.makedirs('canaisgringos.html')
+        with open('canaisgringos.html/lista_universal.json', 'w', encoding='utf-8') as f:
+            json.dump(resultado_final, f, indent=4, ensure_ascii=False)
+            
+        print(">>> Varredura finalizada. Todos os streams capturados.")
         await browser.close()
 
 if __name__ == "__main__":
