@@ -6,23 +6,21 @@
     <style>
         body { display: flex; height: 100vh; margin: 0; background: #000033; color: white; font-family: sans-serif; }
         
-        /* Botão Voltar */
         #btn-voltar { position: absolute; top: 10px; left: 10px; z-index: 999; cursor: pointer; font-size: 24px; color: white; text-decoration: none; background: #000055; padding: 5px 10px; border-radius: 5px; }
         
-        /* Lateral Esquerda - Fundo um pouco mais claro que o principal */
-        #sidebar { width: 350px; display: flex; flex-direction: column; border-right: 2px solid #000088; background: #000044; }
+        /* Ajuste: Lateral mais larga (450px) e Player menor */
+        #sidebar { width: 450px; display: flex; flex-direction: column; border-right: 2px solid #000088; background: #000044; }
         
-        #topo-sidebar { height: 50%; padding: 30px 15px 15px 15px; border-bottom: 2px solid #000088; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        #topo-sidebar { height: 40%; padding: 30px 15px 15px 15px; border-bottom: 2px solid #000088; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
-        #lista-canais { height: 50%; overflow-y: auto; padding: 10px; }
+        #lista-canais { height: 60%; overflow-y: auto; padding: 10px; }
         
-        .canal-btn { display: flex; align-items: center; width: 100%; padding: 10px; margin-bottom: 8px; background: #000066; border: 1px solid #0000aa; color: white; cursor: pointer; border-radius: 6px; transition: background 0.2s; }
+        .canal-btn { display: flex; align-items: center; width: 100%; padding: 12px; margin-bottom: 8px; background: #000066; border: 1px solid #0000aa; color: white; cursor: pointer; border-radius: 6px; transition: background 0.2s; font-size: 16px; }
         .canal-btn:hover { background: #000099; }
-        .bandeira { font-size: 20px; margin-right: 12px; }
+        .bandeira { font-size: 24px; margin-right: 15px; }
 
-        /* Direita: Player de vídeo */
         #main-content { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 20px; background: #000022; }
-        #video-player { width: 100%; height: 90%; background: #000; border: none; }
+        #video-player { width: 100%; height: 80%; background: #000; border: none; }
     </style>
 </head>
 <body>
@@ -32,20 +30,12 @@
     <div id="sidebar">
         <div id="topo-sidebar">
             <script>
-                atOptions = {
-                    'key' : '3bd1bd43807e15df794b97ccde0fed87',
-                    'format' : 'iframe',
-                    'height' : 250,
-                    'width' : 300,
-                    'params' : {}
-                };
+                atOptions = { 'key' : '3bd1bd43807e15df794b97ccde0fed87', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
             </script>
             <script src="https://www.highperformanceformat.com/3bd1bd43807e15df794b97ccde0fed87/invoke.js"></script>
         </div>
         
-        <div id="lista-canais">
-            Carregando lista de canais...
-        </div>
+        <div id="lista-canais">Carregando canais...</div>
     </div>
 
     <div id="main-content">
@@ -53,30 +43,43 @@
     </div>
 
     <script>
-        // O caminho aponta para a pasta onde o bot salva os dados
+        // Mapeamento de bandeiras
+        const bandeiras = {
+            "Estados Unidos": "🇺🇸",
+            "Brasil": "🇧🇷",
+            "Portugal": "🇵🇹",
+            "Argentina": "🇦🇷",
+            "Espanha": "🇪🇸"
+            // Adicione outros países conforme necessário
+        };
+
         fetch('canaisgringos.html/canais.json')
-            .then(response => {
-                if (!response.ok) throw new Error('Status: ' + response.status);
-                return response.json();
-            })
+            .then(response => response.json())
             .then(dados => {
                 const container = document.getElementById('lista-canais');
                 container.innerHTML = ''; 
-                for (let pais in dados) {
+
+                // Garante que Estados Unidos apareça primeiro
+                const paises = Object.keys(dados).sort((a, b) => {
+                    if (a === "Estados Unidos") return -1;
+                    if (b === "Estados Unidos") return 1;
+                    return 0;
+                });
+
+                paises.forEach(pais => {
+                    const icone = bandeiras[pais] || "🌐";
                     for (let nomeCanal in dados[pais]) {
                         let btn = document.createElement('button');
                         btn.className = 'canal-btn';
-                        btn.innerHTML = `<span class="bandeira">🌐</span> <span>${nomeCanal}</span>`;
+                        btn.innerHTML = `<span class="bandeira">${icone}</span> <span>${nomeCanal}</span>`;
                         btn.onclick = () => { document.getElementById('video-player').src = dados[pais][nomeCanal]; };
                         container.appendChild(btn);
                     }
-                }
+                });
             })
             .catch(err => {
-                // Mensagem amigável para o usuário final
-                console.error("Erro interno ao carregar a lista:", err);
                 document.getElementById('lista-canais').innerHTML = 
-                '<p style="color:#ffaa00; text-align:center; padding:10px; font-size:14px;">A lista de canais está sendo atualizada. Tente novamente em alguns instantes.</p>';
+                '<p style="color:#ffaa00; text-align:center; padding:10px;">A lista de canais está sendo atualizada. Tente novamente em instantes.</p>';
             });
     </script>
 </body>
