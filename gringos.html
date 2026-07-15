@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Canais</title>
+    <style>
+        body { display: flex; height: 100vh; margin: 0; background: #000; color: white; font-family: sans-serif; }
+        
+        /* Lateral Esquerda - 350px de largura */
+        #sidebar { width: 350px; display: flex; flex-direction: column; border-right: 2px solid #333; background: #111; }
+        
+        /* Metade superior: Banner e Intro */
+        #topo-sidebar { height: 50%; padding: 15px; border-bottom: 2px solid #333; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        
+        /* Metade inferior: Lista de Canais */
+        #lista-canais { height: 50%; overflow-y: auto; padding: 10px; }
+        
+        /* Estilo dos botões de canal */
+        .canal-btn { display: flex; align-items: center; width: 100%; padding: 10px; margin-bottom: 8px; background: #222; border: 1px solid #444; color: white; cursor: pointer; border-radius: 6px; transition: background 0.2s; }
+        .canal-btn:hover { background: #444; }
+        .bandeira { font-size: 20px; margin-right: 12px; }
+
+        /* Direita: Player de vídeo */
+        #main-content { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        #video-player { width: 100%; height: 90%; background: #000; border: none; }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <div id="topo-sidebar">
+            <h3 style="margin-top: 0;">Bem-vindo ao Catálogo</h3>
+            <!-- Banner Integrado -->
+            <script>
+                atOptions = {
+                    'key' : '3bd1bd43807e15df794b97ccde0fed87',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script src="https://www.highperformanceformat.com/3bd1bd43807e15df794b97ccde0fed87/invoke.js"></script>
+        </div>
+        
+        <div id="lista-canais">
+            <!-- Canais carregados dinamicamente -->
+        </div>
+    </div>
+
+    <div id="main-content">
+        <iframe id="video-player" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        // Carrega o JSON da pasta especificada
+        fetch('canaisgringos.html/canais.json')
+            .then(response => response.json())
+            .then(dados => {
+                const container = document.getElementById('lista-canais');
+                for (let pais in dados) {
+                    for (let nomeCanal in dados[pais]) {
+                        let btn = document.createElement('button');
+                        btn.className = 'canal-btn';
+                        // Adiciona bandeira como emoji (se quiser customizar a bandeira, podemos melhorar essa lógica depois)
+                        btn.innerHTML = `<span class="bandeira">🌐</span> <span>${nomeCanal}</span>`;
+                        btn.onclick = () => {
+                            document.getElementById('video-player').src = dados[pais][nomeCanal];
+                        };
+                        container.appendChild(btn);
+                    }
+                }
+            })
+            .catch(err => console.error("Erro ao carregar canais:", err));
+    </script>
+</body>
+</html>
