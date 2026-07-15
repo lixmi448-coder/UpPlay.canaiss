@@ -2,44 +2,77 @@ import asyncio
 import aiohttp
 import json
 import os
+from playwright.async_api import async_playwright
+
+# Lista de verificação robusta
+async def testar_link(session, url):
+    try:
+        # User-Agent de navegador para evitar bloqueios
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'}
+        async with session.get(url, timeout=10, headers=headers) as response:
+            # Consideramos válido se retornar status 200 ou outros códigos de sucesso
+            return response.status in [200, 206, 301, 302]
+    except:
+        return False
 
 async def run():
-    # Em vez de Playwright (navegador), usamos Aiohttp para baixar os JSONs direto
-    # Isso é instantâneo e não trava no scroll
-    async with aiohttp.ClientSession() as session:
-        # 1. Primeiro pegamos a lista de códigos dos países (isso a gente faz rápido pelo site)
-        # Vamos assumir que você já tem a lista de códigos: ['br', 'us', 'al', 'fr', ...]
-        codigos = ['br', 'us', 'al', 'fr', 'pt', 'es'] # Adicione os outros que você encontrar
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        page = await browser.new_page()
         
-        dados_totais = {}
+        # Acessa a página principal para listar países
+        await page.goto('https://famelack.com/tv/', wait_until='networkidle')
+        itens_pais = await page.query_selector_all('.country-item')
+        codigos = [await item.get_attribute('data-country-code') for item in itens_pais if await item.get_attribute('data-country-code')]
         
-        print(">>> Iniciando extração direta dos arquivos JSON...")
-        
-        for code in codigos:
-            # A URL do arquivo que você descobriu
-            url_json = f"https://famelack.com/tv/data/{code}.json" 
-            # NOTA: Verifique se o caminho é /tv/data/ ou apenas /tv/
-            
-            print(f"-> Baixando dados de: {code.upper()}")
-            try:
-                async with session.get(url_json) as response:
-                    if response.status == 200:
-                        dados_pais = await response.json()
-                        dados_totais[code.upper()] = dados_pais
-                        print(f"   Sucesso: {len(dados_pais)} canais encontrados.")
-                    else:
-                        print(f"   Erro: Não encontrei o arquivo {code}.json")
-            except Exception as e:
-                print(f"   Falha ao baixar {code}: {e}")
+        dados_finais = {}
+        async with aiohttp.ClientSession() as session:
+            for code in codigos:
+                print(f"--- Processando País: {code.upper()} ---")
+                await page.goto(f'https://famelack.com/tv/{code}/', wait_until='networkidle')
+                
+                # Scroll agressivo para forçar a renderização de toda a lista virtualizada
+                await page.evaluate('''async () => {
+                    let totalHeight = 0;
+                    let distance = 2000;
+                    while (totalHeight < document.body.scrollHeight) {
+                        window.scrollBy(0, distance);
+                        totalHeight += distance;
+                        await new Promise(r => setTimeout(r, 600));
+                    }
+                }''')
+                
+                # Extrai a lista completa de elementos já renderizados
+                canais_elementos = await page.evaluate('''() => {
+                    const itens = Array.from(document.querySelectorAll('li.sidebar-entry'));
+                    return itens.map(li => {
+                        const btn = li.querySelector('button');
+                        if (!btn) return null;
+                        return {
+                            nome: li.getAttribute('data-channel-name'),
+                            url: btn.getAttribute('data-video-url')
+                        };
+                    }).filter(item => item && item.url);
+                }''')
+                
+                print(f"   Encontrados {len(canais_elementos)} canais. Iniciando testes...")
+                
+                lista_valida = {}
+                for canal in canais_elementos:
+                    if await testar_link(session, canal['url']):
+                        lista_valida[canal['nome']] = canal['url']
+                        print(f"   [OK] {canal['nome']}")
+                
+                if lista_valida:
+                    dados_finais[code.upper()] = lista_valida
 
-        # 3. Salva tudo em um único arquivo
-        if not os.path.exists('canaisgringos.html'): 
-            os.makedirs('canaisgringos.html')
-            
+        # Salva o resultado final
+        if not os.path.exists('canaisgringos.html'): os.makedirs('canaisgringos.html')
         with open('canaisgringos.html/canais.json', 'w', encoding='utf-8') as f:
-            json.dump(dados_totais, f, indent=4, ensure_ascii=False)
+            json.dump(dados_finais, f, indent=4, ensure_ascii=False)
             
-        print(">>> Varredura finalizada. Todos os dados foram baixados diretamente.")
+        print(">>> Varredura finalizada e todos os links validados.")
+        await browser.close()
 
 if __name__ == "__main__":
     asyncio.run(run())
