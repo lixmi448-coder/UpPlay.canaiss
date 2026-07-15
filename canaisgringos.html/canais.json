@@ -1,6 +1,8 @@
 {
     "AF": {
+        "4 Afghanistan": "https://4afghls.persiana.live/hls/stream.m3u8",
         "Afghanistan International": "https://hls.afintl.com/hls/stream.m3u8",
+        "AMC": "https://amchls.wns.live/hls/stream.m3u8",
         "Dunya Naw TV": "https://dunyanhls.wns.live/hls/stream.m3u8",
         "Eslah TV": "https://eslahtvhls.wns.live/hls/stream.m3u8",
         "Kayhan TV": "https://playout395.livestreamingcdn.com/live/Stream1/playlist.m3u8",
@@ -130,6 +132,7 @@
         "Az TV": "https://str.yodacdn.net/azertv/index.m3u8",
         "Azad TV": "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8",
         "Baku.TV": "https://rtmp.baku.tv/hls/bakutv.m3u8",
+        "Kanal 35": "https://str2.yodacdn.net/kanal35/index.m3u8",
         "Kanal S": "https://lives.atv.az:5443/KANAL-S/streams/kanals.m3u8",
         "KN Music TV": "https://cdn4.yayin.com.tr/kntv/tracks-v1a1/mono.m3u8",
         "Medeniyyet TV": "https://str.yodacdn.net/medeniyyettele/index.m3u8",
@@ -150,6 +153,8 @@
         "Bahrain TV": "https://5c7b683162943.streamlock.net/live/ngrp:bahraintvmain_all/playlist.m3u8"
     },
     "BD": {
+        "ATN Music": "https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI/atnmusic.stream/playlist.m3u8",
+        "Boishakhi TV": "https://boishakhi.sonarbanglatv.com/boishakhi/boishakhitv/index.m3u8",
         "Channel 24": "https://www.youtube-nocookie.com/embed/XGZjAKhVmyk",
         "DBC News": "https://www.youtube-nocookie.com/embed/Ree2YVKny8k",
         "Desh TV": "https://bozztv.com/rongo/rongo-DeshTV/index.m3u8",
@@ -160,10 +165,12 @@
         "Jamuna TV": "https://www.youtube-nocookie.com/embed/j6gG9kg0cfU",
         "Madani Channel Bangla": "https://streaming.madanichannel.tv/static/streaming-playlists/hls/d3e49b76-ac06-4689-a641-9200445b647f/master.m3u8",
         "My TV": "https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/mytv-up-off.stream/live-orgin/mytv-up-off.stream/playlist.m3u8",
+        "NAN TV": "https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/nantv.stream/live-orgin/nantv.stream/playlist.m3u8",
         "NTV Live": "https://www.youtube-nocookie.com/embed/_kPurSNCKgY",
         "Peace TV Bangla": "https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8",
         "Rtv News": "https://www.youtube-nocookie.com/embed/8Y9_-S3ZpZI",
-        "Rupashi Bangla TV": "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/ruposhibangla.stream/playlist.m3u8"
+        "Rupashi Bangla TV": "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/ruposhibangla.stream/playlist.m3u8",
+        "Somoy News TV": "https://bozztv.com/rongo/rongo-somoy/index.m3u8"
     },
     "BY": {
         "Belarus-1": "https://ngtrk.dc.beltelecom.by/ngtrk/_definst_/smil:belarus1.smil/playlist.m3u8",
@@ -215,6 +222,7 @@
         "AYNI TV": "https://59d39900ebfb8.streamlock.net/Aynitv/Aynitv/playlist.m3u8",
         "Bolivision": "https://d135ohnuotzzyo.cloudfront.net/index.m3u8",
         "Bolivision Santa Cruz": "https://d1mws3umreue1g.cloudfront.net/index.m3u8",
+        "Canal 15 Teleor": "https://ares.disfrutaenlared.com:1936/activatv/activatv/playlist.m3u8",
         "CN3 Television": "https://edge.enhdtv.com/cn3/index.m3u8",
         "Coral TV": "https://tv.mediacp.eu:8081/coraltv/index.m3u8",
         "Delta TV": "https://st.deltaboliviainstitucion.org:3778/hybrid/play.m3u8",
@@ -224,6 +232,7 @@
         "FAP TV": "https://edge.enhdtv.com/faptv/index.m3u8",
         "FTV": "https://master.tucableip.com/ftvhd/index.m3u8",
         "Gigavision": "https://tv2.bitstreaming.net:3576/multi_live/play.m3u8",
+        "GTV": "https://lbgo.bozztv.com/ssh101/ssh101/guadalupetv/playlist.m3u8",
         "Interactivo Television": "https://mist01.homestream.fun/hls/interactivotv/index.m3u8",
         "Palenque TV": "https://tv.bitstreaming.net:3234/live/palenquetvlive.m3u8",
         "Poder de Dios TV": "https://s3.tvdatta.com:3846/live/poderdedioslive.m3u8"
