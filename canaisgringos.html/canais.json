@@ -1,38 +1,5 @@
 {
-    "AF": {
-        "Afghanistan International": "https://hls.afintl.com/hls/stream.m3u8",
-        "Dunya Naw TV": "https://dunyanhls.wns.live/hls/stream.m3u8",
-        "Kayhan TV": "https://playout395.livestreamingcdn.com/live/Stream1/playlist.m3u8",
-        "Lemar TV": "https://tgn.bozztv.com/eshgtv-dvrfl05/gin-lemar/index.m3u8",
-        "RTA": "https://rta-tv.akamaized.net/live/SD/RTA-1/RTA/RTA-1.m3u8",
-        "RTA Education": "https://rta-tv.akamaized.net/live/SD/RTA-4/RTA/RTA-4.m3u8",
-        "RTA News": "https://rta-tv.akamaized.net/live/SD/RTA-2/RTA/RTA-2.m3u8",
-        "RTA Sport": "https://rta-tv.akamaized.net/live/SD/RTA-3/RTA/RTA-3.m3u8",
-        "RTA World": "https://rta-tv.akamaized.net/live/SD/RTA-5/RTA/RTA-5.m3u8",
-        "Tamadon TV": "https://hls.tamadon.live/hls/stream.m3u8",
-        "Tolo TV": "https://tgn.bozztv.com/eshgtv-dvrfl05/gin-tolohd/index.m3u8",
-        "TOLOnews": "https://tgn.bozztv.com/eshgtv-dvrfl05/gin-tolonews/index.m3u8"
-    },
-    "AL": {
-        "AlbKanale Music TV": "https://secured.albportal.net:2083/AlbKanaleMusicTv/index.m3u8",
-        "CNA": "https://live1.mediadesk.al/cnatvlive.m3u8",
-        "Euronews Albania": "https://www.youtube-nocookie.com/embed/EadOAIO6LmQ",
-        "News 24": "https://tv.balkanweb.com/news24/livestream/playlist.m3u8",
-        "ntv": "https://protokolldns.xyz/ntv.l.i.v.e5547892023/index.m3u8",
-        "Ora News": "https://live1.mediadesk.al/oranews.m3u8",
-        "Panorama TV": "https://tv02.zas.media:1936/panorama/panorama/playlist.m3u8",
-        "Syri": "https://stream.syritv.al/live/syritv/playlist.m3u8",
-        "Tropoja Televizion": "https://live.prostream.al/al/smil:tropojatv.smil/playlist.m3u8",
-        "TV Johaniter": "https://protokolldns.xyz/johaniterweb44547dsd/index.m3u8",
-        "Zjarr TV": "https://zjarr.future.al/hls/playlist.m3u8"
-    },
-    "DZ": {
-        "AL24 News": "https://cdn.live.easybroadcast.io/abr_corp/66_al24_u4yga6h/corp/66_al24_u4yga6h_240p/chunks.m3u8",
-        "Almagharibia TV: المغاربية": "https://www.youtube-nocookie.com/embed/Qtw0ktz04kM"
-    },
-    "AD": {
-        "Andorra TV": "https://livesg1.rtva.hiway.media/11a6d6f4-ee13-47c7-9c27-7313cf5424e2/manifest.m3u8",
-        "Lòria TV": "https://www.youtube-nocookie.com/embed/gSlGx_8jgYk"
+   
     },
     "AO": {
         "KK TV": "https://w1.manasat.com/ktv-angola/smil:ktv-angola.smil/playlist.m3u8",
