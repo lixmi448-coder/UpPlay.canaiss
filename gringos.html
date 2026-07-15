@@ -12,7 +12,6 @@
         
         #topo-sidebar { height: 30%; padding: 20px; border-bottom: 2px solid #000088; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
         
-        /* Ajuste do status: Afastado do anúncio */
         #status-online { margin-top: 20px; margin-bottom: 10px; font-size: 14px; display: flex; align-items: center; gap: 8px; color: #00ff00; font-weight: bold; }
         .bolinha-verde { width: 12px; height: 12px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 10px #00ff00; }
         
@@ -21,7 +20,6 @@
         .canal-btn { display: flex; align-items: center; width: 100%; padding: 10px; margin-bottom: 8px; background: #000066; border: 1px solid #0000aa; color: white; cursor: pointer; border-radius: 6px; transition: background 0.2s; font-size: 15px; }
         .canal-btn:hover { background: #000099; }
         
-        /* Ajustes dos elementos do botão */
         .num-canal { font-size: 10px; color: #aaa; margin-right: 8px; width: 20px; }
         .bandeira { font-size: 18px; margin-right: 10px; }
 
@@ -45,11 +43,11 @@
     </div>
 
     <div id="main-content">
-        <iframe id="video-player" src="" frameborder="0" allowfullscreen></iframe>
+        <!-- Autoplay ativado via allow="autoplay" -->
+        <iframe id="video-player" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
     <script>
-        // Mapeamento explícito de bandeiras
         const bandeiras = {
             "Estados Unidos": "🇺🇸",
             "Brasil": "🇧🇷",
@@ -70,11 +68,9 @@
                 let totalCanais = 0;
                 let contadorNum = 1;
 
-                // Sistema de ordenação: EUA primeiro, Brasil segundo, restante original
                 const ordemPreferencial = ["Estados Unidos", "Brasil"];
                 const chaves = Object.keys(dados);
                 
-                // Organiza a lista: pega os preferenciais, depois o resto
                 const paisesOrdenados = [
                     ...ordemPreferencial.filter(p => chaves.includes(p)),
                     ...chaves.filter(p => !ordemPreferencial.includes(p))
@@ -86,9 +82,15 @@
                         totalCanais++;
                         let btn = document.createElement('button');
                         btn.className = 'canal-btn';
-                        // Estrutura: Número pequeno + Bandeira + Nome
                         btn.innerHTML = `<span class="num-canal">${contadorNum++}</span><span class="bandeira">${icone}</span> <span>${nomeCanal}</span>`;
-                        btn.onclick = () => { document.getElementById('video-player').src = dados[pais][nomeCanal]; };
+                        
+                        // Função de clique com autoplay
+                        btn.onclick = () => {
+                            // Adicionamos ?autoplay=1 ao link caso o player suporte
+                            let link = dados[pais][nomeCanal];
+                            if (!link.includes('?')) link += '?autoplay=1';
+                            document.getElementById('video-player').src = link;
+                        };
                         container.appendChild(btn);
                     }
                 });
