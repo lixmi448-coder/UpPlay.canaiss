@@ -21,14 +21,11 @@ async def testar_link(session, url):
             return response.status in [200, 206, 301, 302]
     except: return False
 
-async def rolar_ate_o_fim(page, selector):
-    ultima_altura = 0
-    while True:
-        await page.evaluate(f"document.querySelector('{selector}').scrollTop += 1000")
-        await asyncio.sleep(1.5)
-        nova_altura = await page.evaluate(f"document.querySelector('{selector}').scrollTop")
-        if nova_altura == ultima_altura: break
-        ultima_altura = nova_altura
+async def rolar_pagina(page):
+    # Rola a página inteira em incrementos, garantindo o carregamento dinâmico
+    for _ in range(5):
+        await page.evaluate("window.scrollBy(0, 800)")
+        await asyncio.sleep(2)
 
 async def run():
     dados_finais = carregar_dados_existentes()
@@ -40,9 +37,7 @@ async def run():
         
         print(">>> Acessando o site...")
         await page.goto('https://famelack.com/tv/', wait_until='networkidle')
-        
-        # Rola o menu lateral de países
-        await rolar_ate_o_fim(page, '.sidebar-content')
+        await rolar_pagina(page)
         
         codigos = await page.evaluate('''() => {
             const itens = document.querySelectorAll('li.sidebar-entry.country-item');
@@ -57,9 +52,7 @@ async def run():
                 
                 print(f"-> Processando País: {code.upper()}")
                 await page.goto(f'https://famelack.com/tv/{code}/', wait_until='networkidle')
-                
-                # Rola para carregar canais do país
-                await rolar_ate_o_fim(page, '.sidebar-content')
+                await rolar_pagina(page)
                 
                 canais_encontrados = await page.evaluate('''() => {
                     let itens = document.querySelectorAll('li.sidebar-entry');
