@@ -54,7 +54,7 @@
 
     <script>
         // O caminho aponta para a pasta onde o bot salva os dados
-        fetch('bot.python/canaisgringos.html/canais.json')
+        fetch('canaisgringos.html/canais.json')
             .then(response => {
                 if (!response.ok) throw new Error('Status: ' + response.status);
                 return response.json();
