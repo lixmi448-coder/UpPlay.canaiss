@@ -54,6 +54,7 @@
         "Azahares Radiovisual Multimedia": "https://streamyes.alsolnet.com/azaharesfm/live/playlist.m3u8",
         "Beats Radio": "https://videostream.shockmedia.com.ar:19360/beatsradio/beatsradio.m3u8",
         "Bragado TV": "https://vivo.solumedia.com:19360/bragadato/bragadato.m3u8",
+        "Bravo TV": "https://redirector.rudo.video/hls-video/c54ac2799874375c81c1672abb700870537c5223/bravo/bravo.smil/playlist.m3u8",
         "C5N": "https://www.youtube-nocookie.com/embed/xWG-47NFsTg",
         "Cable Imagen Armstrong": "https://stream.arcast.com.ar/casse/casse/playlist.m3u8",
         "CADENA HEAT 91.9 FM": "https://www.youtube-nocookie.com/embed/k9bMyNGsmhU",
@@ -74,6 +75,7 @@
         "Balchi TV": "https://rtmpcontrol.com:1936/balchitv/balchitv/playlist.m3u8",
         "Cool FM 98.9": "https://live2.tensila.com/cool-v-1.arubara/hls/master.m3u8",
         "Power 101.7 FM": "https://vcp11.myplaytv.com/powerfm/powerfm/playlist.m3u8",
+        "VIP TV": "https://vs20.live.opencaster.com/viptvaruba_01e417ae/index.m3u8",
         "Wavez FM": "https://media.streambrothers.com:1936/uszqnhpjpa/uszqnhpjpa/playlist.m3u8",
         "X 102.7 FM": "https://live2.tensila.com/onair-v-1.xfm1027/hls/master.m3u8"
     },
@@ -152,10 +154,9 @@
         "Independent Television": "https://www.youtube-nocookie.com/embed/gfwW-nDsVBU",
         "Jamuna TV": "https://www.youtube-nocookie.com/embed/j6gG9kg0cfU",
         "Madani Channel Bangla": "https://streaming.madanichannel.tv/static/streaming-playlists/hls/d3e49b76-ac06-4689-a641-9200445b647f/master.m3u8",
-        "My TV": "https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/mytv-up-off.stream/live-orgin/mytv-up-off.stream/playlist.m3u8",
         "NTV Live": "https://www.youtube-nocookie.com/embed/_kPurSNCKgY",
-        "Rtv News": "https://www.youtube-nocookie.com/embed/8Y9_-S3ZpZI",
-        "Rupashi Bangla TV": "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/ruposhibangla.stream/playlist.m3u8"
+        "Peace TV Bangla": "https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8",
+        "Rtv News": "https://www.youtube-nocookie.com/embed/8Y9_-S3ZpZI"
     },
     "BY": {
         "Belarus-1": "https://ngtrk.dc.beltelecom.by/ngtrk/_definst_/smil:belarus1.smil/playlist.m3u8",
@@ -171,8 +172,10 @@
     "BE": {
         "ACTV": "https://dlgt0tdl2hpq3.cloudfront.net/rtbf/clr-rtbf/4db788c7/index.m3u8",
         "ATV": "https://live.zendzend.com/mpegts/29375_107244/media_mpegts_0.m3u8",
+        "BAM-TV": "https://belafrikamediatv.vedge.infomaniak.com/livecast/ik:belafrikamediatv/manifest.m3u8",
         "Bouke": "https://dlgt0tdl2hpq3.cloudfront.net/rtbf/clr-rtbf/e1ccc6aa/index.m3u8",
         "BX1": "https://59959724487e3.streamlock.net/stream/live/playlist.m3u8",
+        "Fun Vision": "https://funradiovisionhd.vedge.infomaniak.com/livecast/ik:funradiovisionhd/manifest.m3u8",
         "JapanimTV": "https://foxkidstv.be:3369/stream/play.m3u8",
         "Matele": "https://live.matele.be/hls/live.m3u8",
         "Notele": "https://streaming01.divercom.be/notele_live/direct.stream/playlist.m3u8",
