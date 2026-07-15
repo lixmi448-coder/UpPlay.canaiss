@@ -3,70 +3,80 @@ import json
 import os
 from playwright.async_api import async_playwright
 
-# Armazenará os links encontrados: {codigo_pais: {nome_canal: url_stream}}
 dados_finais = {}
 
 async def run():
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
-        # Contexto para capturar a rede
-        context = await browser.new_context()
+        context = await browser.new_context(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36")
         page = await context.new_page()
 
-        # Dicionário temporário para armazenar o link do canal atual sendo processado
-        # Usamos uma lista para poder modificar dentro da função de callback
-        canal_atual_info = {"url": None}
+        canal_link = {"url": None}
 
-        # Função que intercepta requisições de rede
         def intercept_request(request):
-            # Filtra por formatos comuns de streaming
-            if any(ext in request.url for ext in [".m3u8", "/manifest", "playlist"]):
-                canal_atual_info["url"] = request.url
+            if any(x in request.url for x in ["m3u8", "manifest", ".m3u"]):
+                canal_link["url"] = request.url
 
         page.on("request", intercept_request)
 
+        print(">>> Acessando site e carregando lista completa...")
         await page.goto('https://famelack.com/tv/', wait_until='networkidle')
 
-        # 1. Coleta a lista de países
-        print(">>> Iniciando varredura...")
+        # Lógica para rolar até o fim da lista de países
+        last_count = 0
+        while True:
+            # Rola a página ou container principal. Ajustamos para rolar a página toda
+            await page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
+            await page.wait_for_timeout(2000) 
+            
+            paises_atuais = await page.query_selector_all('.country-item')
+            if len(paises_atuais) == last_count:
+                break
+            last_count = len(paises_atuais)
+            print(f"   Carregando países... {last_count} encontrados.")
+
+        # Agora coletamos os códigos com a lista completa
         paises = await page.query_selector_all('.country-item')
-        codigos = [await p.get_attribute('data-country-code') for p in paises if await p.get_attribute('data-country-code')]
+        codigos = []
+        for p in paises:
+            code = await p.get_attribute('data-country-code')
+            if code: codigos.append(code)
 
         for code in codigos:
-            print(f"-> Processando País: {code.upper()}")
+            print(f"-> Processando: {code.upper()}")
             await page.goto(f'https://famelack.com/tv/{code}/', wait_until='networkidle')
-            await page.wait_for_timeout(2000) # Aguarda renderizar
+            await page.wait_for_selector('li.sidebar-entry')
 
-            # 2. Coleta todos os canais do país
             canais = await page.query_selector_all('li.sidebar-entry')
-            
             dados_pais = {}
+
             for canal in canais:
-                nome_canal = await canal.get_attribute('data-channel-name')
-                if not nome_canal: continue
+                nome = await canal.get_attribute('data-channel-name')
+                if not nome: continue
                 
-                # Reseta o link capturado antes de clicar
-                canal_atual_info["url"] = None
-                
-                # Clica no canal
-                btn = await canal.query_selector('button')
-                if btn:
-                    await btn.click()
-                    await page.wait_for_timeout(3000) # Tempo vital para o link aparecer na rede
-                    
-                    if canal_atual_info["url"]:
-                        dados_pais[nome_canal] = canal_atual_info["url"]
-            
+                canal_link["url"] = None
+                try:
+                    btn = await canal.query_selector('button')
+                    if btn:
+                        await btn.scroll_into_view_if_needed()
+                        await btn.click()
+                        await page.wait_for_timeout(3500) # Espera o player carregar o link
+                        
+                        if canal_link["url"]:
+                            dados_pais[nome] = canal_link["url"]
+                            print(f"   [OK] {nome}")
+                except Exception as e:
+                    print(f"   [Erro] {nome}: {e}")
+
             if dados_pais:
                 dados_finais[code.upper()] = dados_pais
-                print(f"   Salvou {len(dados_pais)} canais para {code.upper()}.")
 
-        # 3. Salva no arquivo
+        # Salva o arquivo
         if not os.path.exists('canaisgringos.html'): os.makedirs('canaisgringos.html')
         with open('canaisgringos.html/canais.json', 'w', encoding='utf-8') as f:
             json.dump(dados_finais, f, indent=4, ensure_ascii=False)
             
-        print(">>> Varredura concluída com sucesso.")
+        print(">>> Varredura finalizada com todos os países.")
         await browser.close()
 
 if __name__ == "__main__":
