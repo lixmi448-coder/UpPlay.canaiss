@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Catálogo de Canais</title>
+    <title>Canais Gringos</title>
     <style>
         body { display: flex; height: 100vh; margin: 0; background: #000; color: white; font-family: sans-serif; }
         
@@ -53,8 +53,8 @@
     </div>
 
     <script>
-        // Carrega o JSON da pasta especificada
-        fetch('canaisgringos.html/canais.json')
+        // Carrega o JSON da pasta onde o bot salva os dados dentro da pasta bot.python
+        fetch('bot.python/canaisgringos.html/canais.json')
             .then(response => response.json())
             .then(dados => {
                 const container = document.getElementById('lista-canais');
@@ -62,7 +62,6 @@
                     for (let nomeCanal in dados[pais]) {
                         let btn = document.createElement('button');
                         btn.className = 'canal-btn';
-                        // Adiciona bandeira como emoji (se quiser customizar a bandeira, podemos melhorar essa lógica depois)
                         btn.innerHTML = `<span class="bandeira">🌐</span> <span>${nomeCanal}</span>`;
                         btn.onclick = () => {
                             document.getElementById('video-player').src = dados[pais][nomeCanal];
