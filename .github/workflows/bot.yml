@@ -31,9 +31,9 @@ jobs:
         run: python bot.python/bot.py
 
       - name: Salvar alterações
-  run: |
-    git config --global user.name 'github-actions'
-    git config --global user.email 'github-actions@github.com'
-    git add canaisgringos.html/canais.json  # Adicione esta linha
-    git commit -m "Atualiza canais.json"
-    git push
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add canaisgringos.html/canais.json
+          git commit -m "Atualiza canais.json"
+          git push
