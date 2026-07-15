@@ -34,6 +34,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git add canaisgringos.html/canais.json
-          git commit -m 'Atualizando lista de canais'
+          git add canaisgringos.html/lista_universal.json
+          git commit -m "Atualizando canais automaticamente"
           git push
