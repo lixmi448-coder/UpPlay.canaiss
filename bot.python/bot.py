@@ -1,68 +1,84 @@
 import asyncio
-import aiohttp
-from playwright.async_api import async_playwright
 import json
 import os
-
-async def coletar_canais_da_lista(page):
-    """
-    Coleta dados diretamente do elemento <li>, que é o container 
-    estável da lista virtualizada.
-    """
-    # Espera o container da lista aparecer
-    try:
-        await page.wait_for_selector('ul.virtualized-list', timeout=10000)
-    except:
-        return []
-
-    # Extrai os dados diretamente dos atributos do <li>
-    # Isso é muito mais rápido do que esperar o botão renderizar
-    return await page.evaluate('''() => {
-        const itens = Array.from(document.querySelectorAll('li.sidebar-entry'));
-        return itens.map(li => ({
-            nome: li.getAttribute('data-channel-name'),
-            url: li.querySelector('button')?.getAttribute('data-video-url')
-        })).filter(item => item.nome && item.url);
-    }''')
+from playwright.async_api import async_playwright
 
 async def run():
     async with async_playwright() as p:
+        # Launch com argumentos para não ser detectado como bot
         browser = await p.chromium.launch(headless=True)
-        page = await browser.new_page()
+        context = await browser.new_context(
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+        )
+        page = await context.new_page()
         
-        print(">>> Iniciando varredura de alta velocidade...")
-        await page.goto('https://famelack.com/tv/')
+        print(">>> Iniciando varredura total e exaustiva...")
+        await page.goto('https://famelack.com/tv/', wait_until='networkidle')
         
-        # Coleta rápida dos países
+        # Coleta a lista de países
         itens_pais = await page.query_selector_all('.country-item')
-        codigos = [await item.get_attribute('data-country-code') for item in itens_pais]
+        codigos = [await item.get_attribute('data-country-code') for item in itens_pais if await item.get_attribute('data-country-code')]
         
         dados_finais = {}
         
         for code in codigos:
-            if not code: continue
-            print(f"-> Acessando {code.upper()}...")
+            print(f"-> Entrando no país: {code.upper()}")
+            await page.goto(f'https://famelack.com/tv/{code}/', wait_until='networkidle')
             
-            await page.goto(f'https://famelack.com/tv/{code}/')
+            # Força a renderização completa da lista virtualizada
+            await page.evaluate('''async () => {
+                const scrollStep = 2000;
+                let lastHeight = 0;
+                let currentHeight = document.body.scrollHeight;
+                
+                while (true) {
+                    window.scrollBy(0, scrollStep);
+                    await new Promise(r => setTimeout(r, 600)); // Tempo para carregar novos itens
+                    currentHeight = document.body.scrollHeight;
+                    if (currentHeight === lastHeight) break; // Chegou ao fim
+                    lastHeight = currentHeight;
+                }
+            }''')
             
-            # Força o carregamento da lista virtualizada com um scroll rápido
-            await page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
-            await asyncio.sleep(2) # Espera mínima apenas para o JS injetar os LI
+            # Captura bruta: lê todos os atributos dos <li>
+            canais_pais = await page.evaluate('''() => {
+                const itens = Array.from(document.querySelectorAll('li.sidebar-entry'));
+                return itens.map(li => {
+                    const btn = li.querySelector('button');
+                    if (!btn) return null;
+                    
+                    // Extrai o JSON de URLs e o link principal
+                    let urls = [];
+                    try {
+                        const raw = btn.getAttribute('data-urls');
+                        urls = raw ? JSON.parse(raw) : [];
+                    } catch(e) {}
+                    
+                    const urlMain = btn.getAttribute('data-video-url');
+                    if (urlMain && !urls.includes(urlMain)) urls.push(urlMain);
+                    
+                    return {
+                        nome: li.getAttribute('data-channel-name'),
+                        links: urls.filter(u => u && u.length > 0)
+                    };
+                }).filter(item => item !== null && item.links.length > 0);
+            }''')
             
-            # Captura a lista
-            canais = await coletar_canais_da_lista(page)
+            if canais_pais:
+                dados_finais[code.upper()] = {c['nome']: c['links'] for c in canais_pais}
+                print(f"   [OK] {len(canais_pais)} canais capturados em {code.upper()}.")
+            else:
+                print(f"   [AVISO] Nenhum link extraído em {code.upper()}.")
             
-            if canais:
-                dados_finais[code.upper()] = {c['nome']: c['url'] for c in canais}
-                print(f"   Coletado: {len(canais)} canais.")
-            
-        # Salva o resultado
-        if not os.path.exists('canaisgringos.html'): os.makedirs('canaisgringos.html')
+        # Garante a pasta e salva o JSON
+        if not os.path.exists('canaisgringos.html'): 
+            os.makedirs('canaisgringos.html')
+        
         with open('canaisgringos.html/canais.json', 'w', encoding='utf-8') as f:
             json.dump(dados_finais, f, indent=4, ensure_ascii=False)
             
         await browser.close()
-        print(">>> Concluído com sucesso!")
+        print(">>> Varredura finalizada com sucesso. Arquivo gerado em 'canaisgringos.html/canais.json'.")
 
 if __name__ == "__main__":
     asyncio.run(run())
