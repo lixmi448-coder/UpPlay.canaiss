@@ -30,7 +30,8 @@
     },
     "DZ": {
         "AL24 News": "https://cdn.live.easybroadcast.io/abr_corp/66_al24_u4yga6h/corp/66_al24_u4yga6h_240p/chunks.m3u8",
-        "Almagharibia TV: المغاربية": "https://www.youtube-nocookie.com/embed/Qtw0ktz04kM"
+        "Almagharibia TV: المغاربية": "https://www.youtube-nocookie.com/embed/Qtw0ktz04kM",
+        "Elwatania TV": "https://livesstream.work.gd:5443/WebRTCApp/streams/stream.m3u8"
     },
     "AD": {
         "Andorra TV": "https://livesg1.rtva.hiway.media/11a6d6f4-ee13-47c7-9c27-7313cf5424e2/manifest.m3u8",
