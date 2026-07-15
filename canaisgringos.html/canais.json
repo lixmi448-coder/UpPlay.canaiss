@@ -1,46 +1,4 @@
 {
-    "US": {
-        "3ABN English": "https://3abn.bozztv.com/3abn2/3abn_live/smil:3abn_live.smil/playlist.m3u8",
-        "3ABN French": "https://3abn.bozztv.com/3abn2/Fre_live/smil:Fre_live.smil/playlist.m3u8",
-        "3ABN International": "https://3abn.bozztv.com/3abn2/Int_live/smil:Int_live.smil/playlist.m3u8",
-        "3ABN Kids": "https://3abn.bozztv.com/3abn2/Kids_live/smil:Kids_live.smil/playlist.m3u8",
-        "3ABN Latino": "https://3abn.bozztv.com/3abn2/Lat_live/smil:Lat_live.smil/playlist.m3u8",
-        "3ABN Praise Him Music Network": "https://3abn.bozztv.com/3abn1/PraiseHim/smil:PraiseHim.smil/playlist.m3u8",
-        "3ABN Proclaim! Network": "https://3abn.bozztv.com/3abn2/Pro_live/smil:Pro_live.smil/playlist.m3u8",
-        "4UV": "https://d3qg1liq0unuxm.cloudfront.net/4UV.m3u8",
-        "6 Wise Tv": "https://live.enhdtv.com:8081/8150/index.m3u8",
-        "21 Jump Street": "https://d1oefjzrirx6fc.cloudfront.net/21_Jump_Street_SONO6.m3u8",
-        "24 Hour Free Movies": "https://d1b5mlajbmvkjv.cloudfront.net/v1/master/9d062541f2ff39b5c0f48b743c6411d25f62fc25/UDU-DistroTV/145.m3u8?ads.vf=7FhdsxqVxOi",
-        "48 Hours US": "https://dai.google.com/linear/hls/event/JUr94WL2QAiVpGNHY5n5dA/master.m3u8",
-        "60 Days In by A&E": "https://d2b8jic9gadlvy.cloudfront.net/v1/aenetworks_60daysin_1/samsungheadend_us/latest/main/hls/playlist.m3u8",
-        "A&E East": "https://206.212.244.63/1/index.m3u8",
-        "AAC Television": "https://www.youtube-nocookie.com/embed/GC3saFn1i2M",
-        "ABC 7 Bay Area and San Francisco News (KGO-DT1)": "https://www.youtube-nocookie.com/embed/YUJl2vWNsWU",
-        "ABC 7 Los Angeles CA (KABC-TV)": "https://www.youtube-nocookie.com/embed/s3iVFJoxrYc",
-        "ABC 7 New York (ABC7NY)": "https://www.youtube-nocookie.com/embed/VrhYz4CL70I",
-        "ABC 13 Houston": "https://www.youtube-nocookie.com/embed/8uCTDszkENs",
-        "ABC 20/20": "https://d4bq78o8d5tf5.cloudfront.net/ABC_2020.m3u8",
-        "ABC 30 Fresno and Central Valley News (KFSN-DT1)": "https://www.youtube-nocookie.com/embed/OWa4603KGkQ",
-        "ABC East": "https://40.160.24.52/ABC/index.m3u8",
-        "ABC News Live": "https://pb-0n3n2ej0w8pl9.akamaized.net/ABCNewsLive_Disney.m3u8",
-        "ABC News Live 1": "https://abcnews-streams.akamaized.net/hls/live/2023560/abcnewshudson1/master.m3u8",
-        "ABC News Live 2": "https://abcnews-streams.akamaized.net/hls/live/2023561/abcnewshudson2/master.m3u8",
-        "ABC News Live 3": "https://abcnews-streams.akamaized.net/hls/live/2023562/abcnewshudson3/master.m3u8",
-        "ABC News Live 4": "https://abcnews-streams.akamaized.net/hls/live/2023563/abcnewshudson4/master.m3u8",
-        "ABC News Live 5": "https://abcnews-streams.akamaized.net/hls/live/2023564/abcnewshudson5/master.m3u8",
-        "ABC News Live 6": "https://abcnews-streams.akamaized.net/hls/live/2023565/abcnewshudson6/master.m3u8",
-        "ABC News Live 7": "https://abcnews-streams.akamaized.net/hls/live/2023566/abcnewshudson7/master.m3u8",
-        "ABC News Live 8": "https://abcnews-streams.akamaized.net/hls/live/2023567/abcnewshudson8/master.m3u8",
-        "ABC News Live 9": "https://abcnews-streams.akamaized.net/hls/live/2023568/abcnewshudson9/master.m3u8",
-        "ABC News Live 10": "https://abcnews-streams.akamaized.net/hls/live/2023569/abcnewshudson10/master.m3u8",
-        "ABN Afghanistan": "https://mediaserver.abnvideos.com/streams/abnafghanistan.m3u8",
-        "ABN Africa": "https://mediaserver.abnvideos.com/streams/abnafrica.m3u8",
-        "ABN Bible Movies Channel": "https://mediaserver.abnvideos.com/streams/abnbiblemovies.m3u8",
-        "ABN China": "https://mediaserver.abnvideos.com/streams/abnchina.m3u8",
-        "ABN Freedom of Speech": "https://mediaserver.abnvideos.com/streams/freedom_of_speech.m3u8",
-        "ABN I AM": "https://mediaserver.abnvideos.com/streams/i_am_.m3u8",
-        "ABN Son of God": "https://mediaserver.abnvideos.com/streams/son_of_god_.m3u8"
-    },
     "AF": {
         "Afghanistan International": "https://hls.afintl.com/hls/stream.m3u8",
         "Dunya Naw TV": "https://dunyanhls.wns.live/hls/stream.m3u8",
@@ -72,8 +30,7 @@
     },
     "DZ": {
         "AL24 News": "https://cdn.live.easybroadcast.io/abr_corp/66_al24_u4yga6h/corp/66_al24_u4yga6h_240p/chunks.m3u8",
-        "Almagharibia TV: المغاربية": "https://www.youtube-nocookie.com/embed/Qtw0ktz04kM",
-        "Elwatania TV": "https://livesstream.work.gd:5443/WebRTCApp/streams/stream.m3u8"
+        "Almagharibia TV: المغاربية": "https://www.youtube-nocookie.com/embed/Qtw0ktz04kM"
     },
     "AD": {
         "Andorra TV": "https://livesg1.rtva.hiway.media/11a6d6f4-ee13-47c7-9c27-7313cf5424e2/manifest.m3u8",
@@ -81,21 +38,20 @@
     },
     "AO": {
         "KK TV": "https://w1.manasat.com/ktv-angola/smil:ktv-angola.smil/playlist.m3u8",
-        "Muzangala TV": "https://5cf4a2c2512a2.streamlock.net/tvmuzangala/tvmuzangala/playlist.m3u8",
-        "TV Zimbo": "https://sgn-cdn-video.vods2africa.com/Tv-Zimbo/index.fmp4.m3u8"
+        "Muzangala TV": "https://5cf4a2c2512a2.streamlock.net/tvmuzangala/tvmuzangala/playlist.m3u8"
     },
     "AG": {
         "Pointe TV": "https://tv.pointville.ag/hls/mystream.m3u8"
     },
     "AR": {
         "5tv": "https://617c5175c970b.streamlock.net:4444/tvcinco/live1/playlist.m3u8",
+        "24/7 Canal de Noticias": "https://panel.host-live.com:19360/cn247tv/cn247tv.m3u8",
         "A24": "https://www.youtube-nocookie.com/embed/ArKbAx1K-2U",
         "ABTV Bariloche": "https://videostream.shockmedia.com.ar/hls/abtvbariloche/abtvbariloche.m3u8",
         "Aire de Santa Fe": "https://mdstrm.com/live-stream-playlist/6931a0eb06778645348008e0.m3u8",
         "America TV": "https://www.youtube-nocookie.com/embed/zcWXboTnous",
         "Argentinisima Satelital": "https://stream1.sersat.com/hls/argentinisima.m3u8",
         "Azahares Radiovisual Multimedia": "https://streamyes.alsolnet.com/azaharesfm/live/playlist.m3u8",
-        "Beats Radio": "https://videostream.shockmedia.com.ar:19360/beatsradio/beatsradio.m3u8",
         "Bragado TV": "https://vivo.solumedia.com:19360/bragadato/bragadato.m3u8",
         "Bravo TV": "https://redirector.rudo.video/hls-video/c54ac2799874375c81c1672abb700870537c5223/bravo/bravo.smil/playlist.m3u8",
         "C5N": "https://www.youtube-nocookie.com/embed/xWG-47NFsTg",
@@ -104,10 +60,8 @@
         "Cadena103.TV": "https://streamlov.alsolnet.com/cadena103/live/playlist.m3u8",
         "Canal 2 Gualeguay": "https://stream.arcast.net:4443/gualeguay/gualeguay/playlist.m3u8",
         "Canal 2 Misiones": "https://nd106.republicaservers.com:4433/hls/canal2misioness/index.m3u8",
-        "Canal 2 NexTV Rafaela": "https://edge.enhdtv.com/nexthd/index.m3u8",
         "Canal 3 Formosa": "https://stmvideo6.livecastv.com/agenfor/agenfor/playlist.m3u8",
-        "Canal 3 La Pampa": "https://stream.arcast.com.ar/c3lapampa/ngrp:c3lapampa_all/playlist.m3u8",
-        "Canal 3 Las Heras": "https://stream.arcast.com.ar/canal3/canal3/playlist.m3u8"
+        "Canal 3 La Pampa": "https://stream.arcast.com.ar/c3lapampa/ngrp:c3lapampa_all/playlist.m3u8"
     },
     "AM": {
         "Armenia 1": "https://amtv.tulixcdn.com/amtv2/am2abr/index.m3u8",
@@ -115,7 +69,6 @@
         "First Channel News": "https://amtvusdvr.tulix.tv/am3abr/index.m3u8"
     },
     "AW": {
-        "Balchi TV": "https://rtmpcontrol.com:1936/balchitv/balchitv/playlist.m3u8",
         "Cool FM 98.9": "https://live2.tensila.com/cool-v-1.arubara/hls/master.m3u8",
         "Power 101.7 FM": "https://vcp11.myplaytv.com/powerfm/powerfm/playlist.m3u8",
         "VIP TV": "https://vs20.live.opencaster.com/viptvaruba_01e417ae/index.m3u8",
@@ -130,6 +83,7 @@
         "Ausbiz TV": "https://d9quh89lh7dtw.cloudfront.net/public-output/index.m3u8",
         "Breaking News by LeadStory": "https://amg02703-leadstory-leadstory-samsungau-rr75f.amagi.tv/playlist/amg02703-leadstory-leadstory-samsungau/playlist.m3u8",
         "C31 Melbourne": "https://d1k6kax80wecy5.cloudfront.net/RLnAKY/index.m3u8",
+        "Channel 44": "https://d1k6kax80wecy5.cloudfront.net/WFqZJc/index.m3u8",
         "Come Dine With Me": "https://amg00654-itv-amg00654c2-samsung-au-925.playouts.now.amagi.tv/itv-cdwmug/playlist.m3u8",
         "Escape to the Country": "https://amg00145-amg00145c11-samsung-au-6579.playouts.now.amagi.tv/playlist.m3u8",
         "Expo Channel": "https://tvsnhlslivetest.akamaized.net/hls/live/2034711/EXPO-MSL4/master.m3u8",
@@ -141,8 +95,7 @@
         "MovieSphere AU": "https://amg00353-lionsgatefilmsi-moviesphereaus-samsungau-7qzhf.amagi.tv/playlist/amg00353-lionsgatefilmsi-moviesphereaus-samsungau/playlist.m3u8",
         "MTRSPT 1": "https://amg02873-kravemedia-mtrspt1-samsungau-2anp4.amagi.tv/playlist/amg02873-kravemedia-mtrspt1-samsungau/playlist.m3u8",
         "NatureTime AU": "https://amg00090-blueantllc-lovenature-au-samsungau-wggcn.amagi.tv/playlist/amg00090-blueantllc-lovenature-au-samsungau/playlist.m3u8",
-        "Project Runway": "https://amg02189-amg02189c1-samsung-au-5798.playouts.now.amagi.tv/playlist.m3u8",
-        "Pulse": "https://amg01076-lightningintern-pulse-samsungau-4a45e.amagi.tv/playlist/amg01076-lightningintern-pulse-samsungau/playlist.m3u8"
+        "Project Runway": "https://amg02189-amg02189c1-samsung-au-5798.playouts.now.amagi.tv/playlist.m3u8"
     },
     "AT": {
         "Antenne Kaernten": "https://60efd7a2b4d02.streamlock.net/a_kaernten/ngrp:livestream_all/playlist.m3u8",
@@ -176,9 +129,7 @@
         "Xezer TV": "https://www.xezerxeber.az/stream/index.m3u8"
     },
     "BS": {
-        "Guardian Talk Radio": "https://cdn-edge1.streamcomedia.com/abr_tngr969fm/abr-tngr969fm_streams/playlist.m3u8",
-        "The Parliamentary Channel": "https://zns-edge1.streamcomedia.cloud/abr_parliamentarychannel/abr-parliament_streams/playlist.m3u8",
-        "ZNS-TV": "https://zns-edge1.streamcomedia.cloud/znstv13/zns1080p_stream/playlist.m3u8"
+        "Guardian Talk Radio": "https://cdn-edge1.streamcomedia.com/abr_tngr969fm/abr-tngr969fm_streams/playlist.m3u8"
     },
     "BH": {
         "Bahrain International": "https://5c7b683162943.streamlock.net/live/ngrp:bahraininternational_all/playlist.m3u8",
@@ -189,18 +140,20 @@
     },
     "BD": {
         "Channel 24": "https://www.youtube-nocookie.com/embed/XGZjAKhVmyk",
-        "DBC News": "https://www.youtube-nocookie.com/embed/Ree2YVKny8k",
+        "Channel S": "https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/channels.stream/live-orgin/channels.stream/playlist.m3u8",
+        "DBC News": "https://www.youtube-nocookie.com/embed/3GjIJ1LMhCU",
         "Desh TV": "https://bozztv.com/rongo/rongo-DeshTV/index.m3u8",
         "Ekattor TV": "https://www.youtube-nocookie.com/embed/9L9ymmaPIS0",
         "Ekhon TV": "https://www.youtube-nocookie.com/embed/PRvnQNOaTFg",
         "Gazi TV": "https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/gazibdz.stream/live-orgin/gazibdz.stream/playlist.m3u8",
         "Independent Television": "https://www.youtube-nocookie.com/embed/gfwW-nDsVBU",
-        "Jamuna TV": "https://www.youtube-nocookie.com/embed/j6gG9kg0cfU",
+        "Jamuna TV": "https://www.youtube-nocookie.com/embed/V010trip4JY",
         "Madani Channel Bangla": "https://streaming.madanichannel.tv/static/streaming-playlists/hls/d3e49b76-ac06-4689-a641-9200445b647f/master.m3u8",
-        "My TV": "https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/mytv-up-off.stream/live-orgin/mytv-up-off.stream/playlist.m3u8",
-        "NTV Live": "https://www.youtube-nocookie.com/embed/_kPurSNCKgY",
+        "NTV Live": "https://www.youtube-nocookie.com/embed/IEoQ4C5ThpI",
         "Peace TV Bangla": "https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8",
-        "Rtv News": "https://www.youtube-nocookie.com/embed/8Y9_-S3ZpZI"
+        "Rtv News": "https://www.youtube-nocookie.com/embed/gYtic1Ybyn4",
+        "Rupashi Bangla TV": "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/ruposhibangla.stream/playlist.m3u8",
+        "Somoy News TV": "https://www.youtube-nocookie.com/embed/YyWUtjjJc9U"
     },
     "BY": {
         "Belarus-1": "https://ngtrk.dc.beltelecom.by/ngtrk/_definst_/smil:belarus1.smil/playlist.m3u8",
@@ -245,7 +198,6 @@
     },
     "BO": {
         "Amitel TV": "https://stv2.boliviaplay.com.bo/hls/stream.m3u8",
-        "As Contenidos": "https://master.tucableip.com/ascontenido/index.m3u8",
         "Audiokiss": "https://master.tucableip.com/audiokisstv/index.m3u8",
         "AYNI TV": "https://59d39900ebfb8.streamlock.net/Aynitv/Aynitv/playlist.m3u8",
         "Bolivision": "https://d135ohnuotzzyo.cloudfront.net/index.m3u8",
@@ -260,7 +212,10 @@
         "FTV": "https://master.tucableip.com/ftvhd/index.m3u8",
         "Gigavision": "https://tv2.bitstreaming.net:3576/multi_live/play.m3u8",
         "Interactivo Television": "https://mist01.homestream.fun/hls/interactivotv/index.m3u8",
-        "Palenque TV": "https://tv.bitstreaming.net:3234/live/palenquetvlive.m3u8",
-        "Poder de Dios TV": "https://s3.tvdatta.com:3846/live/poderdedioslive.m3u8"
+        "Poder de Dios TV": "https://s3.tvdatta.com:3846/live/poderdedioslive.m3u8",
+        "PTV": "https://giatv.bozztv.com/giatv/giatv-PTVonLINE/PTVonLINE/playlist.m3u8",
+        "Radio Centro": "https://streamlov.alsolnet.com/grupocentrobo/live/playlist.m3u8",
+        "Radio Clasica TV": "https://ares.disfrutaenlared.com:1936/clasica/clasica/playlist.m3u8",
+        "Radio Kollasuyo": "https://azura2.bitstreaming.net/hls/kollasuyo3/live.m3u8"
     }
 }
