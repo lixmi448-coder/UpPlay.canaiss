@@ -53,7 +53,7 @@
     </div>
 
     <script>
-        // O caminho deve ser relativo à raiz do site
+        // O caminho aponta para a pasta onde o bot salva os dados
         fetch('bot.python/canaisgringos.html/canais.json')
             .then(response => {
                 if (!response.ok) throw new Error('Status: ' + response.status);
@@ -73,9 +73,10 @@
                 }
             })
             .catch(err => {
-                console.error("Erro detalhado:", err);
+                // Mensagem amigável para o usuário final
+                console.error("Erro interno ao carregar a lista:", err);
                 document.getElementById('lista-canais').innerHTML = 
-                '<p style="color:yellow; text-align:center; padding:10px;">Erro ao carregar canais.<br>Verifique se o arquivo JSON está acessível no caminho: bot.python/canaisgringos.html/canais.json</p>';
+                '<p style="color:#ffaa00; text-align:center; padding:10px; font-size:14px;">A lista de canais está sendo atualizada. Tente novamente em alguns instantes.</p>';
             });
     </script>
 </body>
