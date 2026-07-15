@@ -44,7 +44,7 @@
         </div>
         
         <div id="lista-canais">
-            <!-- Canais carregados dinamicamente -->
+            Carregando canais...
         </div>
     </div>
 
@@ -55,9 +55,14 @@
     <script>
         // Carrega o JSON da pasta onde o bot salva os dados dentro da pasta bot.python
         fetch('bot.python/canaisgringos.html/canais.json')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) throw new Error('Falha ao carregar JSON');
+                return response.json();
+            })
             .then(dados => {
                 const container = document.getElementById('lista-canais');
+                container.innerHTML = ''; // Limpa o "Carregando..."
+                
                 for (let pais in dados) {
                     for (let nomeCanal in dados[pais]) {
                         let btn = document.createElement('button');
@@ -70,7 +75,10 @@
                     }
                 }
             })
-            .catch(err => console.error("Erro ao carregar canais:", err));
+            .catch(err => {
+                console.error("Erro ao carregar canais:", err);
+                document.getElementById('lista-canais').innerHTML = '<p style="color:red; text-align:center;">Erro ao carregar lista de canais. O bot ainda está processando?</p>';
+            });
     </script>
 </body>
 </html>
