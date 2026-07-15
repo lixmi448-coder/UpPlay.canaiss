@@ -31,6 +31,7 @@
     "DZ": {
         "AL24 News": "https://cdn.live.easybroadcast.io/abr_corp/66_al24_u4yga6h/corp/66_al24_u4yga6h_240p/chunks.m3u8",
         "Almagharibia TV: المغاربية": "https://www.youtube-nocookie.com/embed/Qtw0ktz04kM",
+        "CNA": "https://live.creacast.com/cna/stream/playlist.m3u8",
         "Elwatania TV": "https://livesstream.work.gd:5443/WebRTCApp/streams/stream.m3u8"
     },
     "AD": {
@@ -117,15 +118,18 @@
         "Kronen Zeitung": "https://www.youtube-nocookie.com/embed/JS67CK1OVMU",
         "Kurier TV": "https://schautv.mdn.ors.at/live/eds/kuriertv_hd/hls_nodrm/kuriertv_hd-nodrm.m3u8",
         "Landle TV": "https://streaming13.huberwebmedia.at/LiveApp/streams/985585225397790082777809.m3u8",
+        "Love The Planet DE": "https://amg01821-amg01821c12-rlaxx-gb-10461.playouts.now.amagi.tv/playlist.m3u8",
         "LT1": "https://ms02.w24.at/R9Partner/lt1.smil/playlist.m3u8",
         "Melodie TV": "https://183.bozztv.com/ssh101/ssh101/melodietvlive/playlist.m3u8",
         "N1 TV": "https://z4atvie10snsr101.rtccdn.com/r9_live/r9_n1media_abr/playlist.m3u8",
-        "oe24 TV": "https://www.youtube-nocookie.com/embed/oZVJoFj12qY"
+        "oe24 TV": "https://www.youtube-nocookie.com/embed/oZVJoFj12qY",
+        "Okto": "https://cdn3.wowza.com/1/MHFtazJReW5rOFhP/N2NWNDZ2/hls/live/playlist.m3u8"
     },
     "AZ": {
         "Ayaz TV": "https://janya-ayaztv.vgcdn.net/ptnr-WebApp/title-Ayaz_TV/v1/vglive-sk-934820/main.m3u8",
         "Az TV": "https://str.yodacdn.net/azertv/index.m3u8",
         "Azad TV": "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8",
+        "Baku.TV": "https://rtmp.baku.tv/hls/bakutv.m3u8",
         "Kanal S": "https://lives.atv.az:5443/KANAL-S/streams/kanals.m3u8",
         "KN Music TV": "https://cdn4.yayin.com.tr/kntv/tracks-v1a1/mono.m3u8",
         "Medeniyyet TV": "https://str.yodacdn.net/medeniyyettele/index.m3u8",
@@ -178,8 +182,10 @@
         "BAM-TV": "https://belafrikamediatv.vedge.infomaniak.com/livecast/ik:belafrikamediatv/manifest.m3u8",
         "Bouke": "https://dlgt0tdl2hpq3.cloudfront.net/rtbf/clr-rtbf/e1ccc6aa/index.m3u8",
         "BX1": "https://59959724487e3.streamlock.net/stream/live/playlist.m3u8",
+        "Canal Z": "https://d1hz1p2gea2zy4.cloudfront.net/live/rmgtv/RMG-TRENDSZFR-LIVE/index.m3u8",
         "Fun Vision": "https://funradiovisionhd.vedge.infomaniak.com/livecast/ik:funradiovisionhd/manifest.m3u8",
         "JapanimTV": "https://foxkidstv.be:3369/stream/play.m3u8",
+        "Kanaal Z": "https://d1hz1p2gea2zy4.cloudfront.net/live/rmgtv/RMG-TRENDSZNL-LIVE/index.m3u8",
         "Matele": "https://live.matele.be/hls/live.m3u8",
         "Notele": "https://streaming01.divercom.be/notele_live/direct.stream/playlist.m3u8",
         "Ring House TV": "https://eggproiptv.duckdns.org:3946/hybrid/play.m3u8",
