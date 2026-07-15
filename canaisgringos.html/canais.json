@@ -30,7 +30,8 @@
     },
     "DZ": {
         "AL24 News": "https://cdn.live.easybroadcast.io/abr_corp/66_al24_u4yga6h/corp/66_al24_u4yga6h_240p/chunks.m3u8",
-        "Almagharibia TV: المغاربية": "https://www.youtube-nocookie.com/embed/Qtw0ktz04kM"
+        "Almagharibia TV: المغاربية": "https://www.youtube-nocookie.com/embed/Qtw0ktz04kM",
+        "Elwatania TV": "https://livesstream.work.gd:5443/WebRTCApp/streams/stream.m3u8"
     },
     "AD": {
         "Andorra TV": "https://livesg1.rtva.hiway.media/11a6d6f4-ee13-47c7-9c27-7313cf5424e2/manifest.m3u8",
@@ -154,9 +155,11 @@
         "Independent Television": "https://www.youtube-nocookie.com/embed/gfwW-nDsVBU",
         "Jamuna TV": "https://www.youtube-nocookie.com/embed/j6gG9kg0cfU",
         "Madani Channel Bangla": "https://streaming.madanichannel.tv/static/streaming-playlists/hls/d3e49b76-ac06-4689-a641-9200445b647f/master.m3u8",
+        "My TV": "https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/mytv-up-off.stream/live-orgin/mytv-up-off.stream/playlist.m3u8",
         "NTV Live": "https://www.youtube-nocookie.com/embed/_kPurSNCKgY",
         "Peace TV Bangla": "https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8",
-        "Rtv News": "https://www.youtube-nocookie.com/embed/8Y9_-S3ZpZI"
+        "Rtv News": "https://www.youtube-nocookie.com/embed/8Y9_-S3ZpZI",
+        "Rupashi Bangla TV": "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/ruposhibangla.stream/playlist.m3u8"
     },
     "BY": {
         "Belarus-1": "https://ngtrk.dc.beltelecom.by/ngtrk/_definst_/smil:belarus1.smil/playlist.m3u8",
@@ -193,6 +196,7 @@
         "ADO TV": "https://strhls.streamakaci.tv/ortb/ortb2-multi/playlist.m3u8",
         "Eden TV": "https://rtmp.edentv.bj/hls/stream.m3u8",
         "ICONE TV": "https://lecteur.iconetv.bj/hls/stream.m3u8",
+        "KassouaTV": "https://playtv4k.live/live/kassouatv/index.m3u8",
         "Le Nouveau Manager TV": "https://lnmlive.com/live/lnmtv.m3u8",
         "ORTB TV": "https://strhls.streamakaci.tv/ortb/ortb1-multi/playlist.m3u8",
         "Speedline TV": "https://cdn-us-east-prod-ingest-infra-dacast-com.akamaized.net/dbe59037-07a0-4f1c-82a2-7de94b4b62d2/index.m3u8",
