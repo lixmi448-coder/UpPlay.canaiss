@@ -21,17 +21,29 @@ async def testar_link(session, url):
             return response.status in [200, 206, 301, 302]
     except: return False
 
+async def rolar_ate_o_fim(page, selector):
+    ultima_altura = 0
+    while True:
+        await page.evaluate(f"document.querySelector('{selector}').scrollTop += 1000")
+        await asyncio.sleep(1.5)
+        nova_altura = await page.evaluate(f"document.querySelector('{selector}').scrollTop")
+        if nova_altura == ultima_altura: break
+        ultima_altura = nova_altura
+
 async def run():
     dados_finais = carregar_dados_existentes()
+    alterado = False
     
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
         
-        print(">>> Acessando o site para extrair a lista completa...")
+        print(">>> Acessando o site...")
         await page.goto('https://famelack.com/tv/', wait_until='networkidle')
         
-        # Extração direta da lista virtualizada (pega todos os países de uma vez)
+        # Rola o menu lateral de países
+        await rolar_ate_o_fim(page, '.sidebar-content')
+        
         codigos = await page.evaluate('''() => {
             const itens = document.querySelectorAll('li.sidebar-entry.country-item');
             return Array.from(itens).map(li => li.getAttribute('data-country-code'));
@@ -41,32 +53,20 @@ async def run():
         
         async with aiohttp.ClientSession() as session:
             for code in codigos:
-                if not code: continue
-                code_upper = code.upper()
+                if not code or code.upper() in dados_finais: continue
                 
-                # Checkpoint: Pula se já tiver sido processado
-                if code_upper in dados_finais: continue
-                    
-                print(f"-> Processando País: {code_upper}")
+                print(f"-> Processando País: {code.upper()}")
                 await page.goto(f'https://famelack.com/tv/{code}/', wait_until='networkidle')
                 
-                # Coleta canais dentro do país
-                canais_encontrados = await page.evaluate('''async () => {
-                    let todosCanais = new Map();
-                    // Rola para garantir que os canais internos carreguem
-                    window.scrollTo(0, document.body.scrollHeight);
-                    await new Promise(r => setTimeout(r, 1000));
-                    
+                # Rola para carregar canais do país
+                await rolar_ate_o_fim(page, '.sidebar-content')
+                
+                canais_encontrados = await page.evaluate('''() => {
                     let itens = document.querySelectorAll('li.sidebar-entry');
-                    itens.forEach(li => {
+                    return Array.from(itens).map(li => {
                         let btn = li.querySelector('button');
-                        if (btn) {
-                            let nome = li.getAttribute('data-channel-name');
-                            let url = btn.getAttribute('data-video-url');
-                            if (nome && url) todosCanais.set(nome, url);
-                        }
-                    });
-                    return Array.from(todosCanais.entries()).map(([nome, url]) => ({nome, url}));
+                        return btn ? {nome: li.getAttribute('data-channel-name'), url: btn.getAttribute('data-video-url')} : null;
+                    }).filter(c => c && c.nome && c.url);
                 }''')
                 
                 lista_valida = {}
@@ -75,12 +75,15 @@ async def run():
                         lista_valida[canal['nome']] = canal['url']
                 
                 if lista_valida:
-                    dados_finais[code_upper] = lista_valida
-                    with open(ARQUIVO_JSON, 'w', encoding='utf-8') as f:
-                        json.dump(dados_finais, f, indent=4, ensure_ascii=False)
-                    print(f"   [OK] {len(lista_valida)} canais salvos para {code_upper}.")
-
-        print(">>> Varredura concluída.")
+                    dados_finais[code.upper()] = lista_valida
+                    alterado = True
+                    print(f"   [OK] {len(lista_valida)} canais salvos.")
+        
+        if alterado:
+            with open(ARQUIVO_JSON, 'w', encoding='utf-8') as f:
+                json.dump(dados_finais, f, indent=4, ensure_ascii=False)
+            print(">>> Arquivo JSON atualizado.")
+        
         await browser.close()
 
 if __name__ == "__main__":
