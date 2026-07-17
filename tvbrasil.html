@@ -2,60 +2,22 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>TV Brasil Ao Vivo</title>
+    <title>TV BRASIL AO VIVO</title>
+    <!-- CSS do Video.js -->
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <style>
-        body { 
-            margin: 0; 
-            background-color: #0a192f !important; 
-            color: white; 
-            font-family: sans-serif; 
-            display: flex; 
-            height: 100vh; 
-        }
+        body { margin: 0; background-color: #0a192f !important; color: white; font-family: sans-serif; display: flex; height: 100vh; }
+        .video-box { flex: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
         
-        .video-box { flex: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        iframe { width: 80%; height: 500px; border-radius: 15px; border: 4px solid #fff; }
+        /* Ajuste do container do player */
+        .video-js { width: 80% !important; height: 500px !important; border-radius: 15px; border: 4px solid #fff; }
         
-        .sidebar { 
-            flex: 1; 
-            background-color: #112240 !important; 
-            padding: 20px; 
-            border-left: 2px solid #00d4ff;
-            display: flex; 
-            flex-direction: column;
-            align-items: center;
-            overflow-y: auto;
-        }
-        
-        .banner-container {
-            width: 300px;
-            height: 250px;
-            flex-shrink: 0;
-            margin-bottom: 20px;
-        }
-
-        .conteudo-abaixo {
-            width: 90%;
-            margin-top: 300px !important; 
-            text-align: center;
-        }
-
+        .sidebar { flex: 1; background-color: #112240 !important; padding: 20px; border-left: 2px solid #00d4ff; display: flex; flex-direction: column; align-items: center; overflow-y: auto; }
+        .banner-container { width: 300px; height: 250px; flex-shrink: 0; margin-bottom: 20px; }
+        .conteudo-abaixo { width: 90%; margin-top: 50px; text-align: center; }
         .btn-voltar { display: block; margin-top: 20px; padding: 10px; background: #00d4ff; text-decoration: none; color: black; font-weight: bold; text-align: center; border-radius: 5px; }
-        
-        .lista-programas { 
-            text-align: left;
-            color: #fff;
-            font-size: 14px;
-        }
-        
-        .info-fixa { 
-            margin-top: 40px; 
-            padding-top: 20px;
-            border-top: 1px solid #00d4ff;
-            font-size: 13px;
-            opacity: 0.8;
-        }
-        
+        .lista-programas { text-align: left; color: #fff; font-size: 14px; }
+        .info-fixa { margin-top: 40px; padding-top: 20px; border-top: 1px solid #00d4ff; font-size: 13px; opacity: 0.8; }
         ul { padding-left: 20px; margin-top: 10px; }
         li { margin-bottom: 5px; }
     </style>
@@ -63,20 +25,19 @@
 <body>
     <div class="video-box">
         <h2>TV BRASIL AO VIVO</h2>
-        <iframe src="https://tvbrasil-stream.ebc.com.br/EBC_HD-mp4a_128000=20000.m3u8" frameborder="0" allowfullscreen></iframe>
+        
+        <!-- Player Video.js -->
+        <video-js id="minha-tv" class="video-js vjs-big-play-centered" controls preload="auto">
+            <source src="https://tvbrasil-stream.ebc.com.br/EBC_HD-avc1_900000=10003.m3u8"application/x-mpegURL">
+        </video-js>
+
         <a href="index.html" class="btn-voltar">Voltar ao Menu</a>
     </div>
 
     <div class="sidebar">
         <div class="banner-container">
             <script type="text/javascript">
-                atOptions = {
-                    'key' : '3bd1bd43807e15df794b97ccde0fed87',
-                    'format' : 'iframe',
-                    'height' : 250,
-                    'width' : 300,
-                    'params' : {}
-                };
+                atOptions = { 'key' : '3bd1bd43807e15df794b97ccde0fed87', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
             </script>
             <script type="text/javascript" src="https://www.highperformanceformat.com/3bd1bd43807e15df794b97ccde0fed87/invoke.js"></script>
         </div>
@@ -85,7 +46,7 @@
             <div class="lista-programas">
                 <h3>Programações diárias:</h3>
                 <ul>
-                    <li>Jornal da TV Brasil</li>
+                     <li>Jornal da TV Brasil</li>
                     <li>Sem Censura</li>
                     <li>Brasil em Dia</li>
                     <li>Caminhos da Reportagem</li>
@@ -95,11 +56,17 @@
                     <li>Documentários</li>
                 </ul>
             </div>
-
             <div class="info-fixa">
-                <p>Gostou da transmissão? Compartilhe com os amigos! Siga a gente nas redes sociais. Problemas na imagem? Tente recarregar a página.</p>
+                <p>Gostou da transmissão? Compartilhe com os amigos! Problemas na imagem? Tente recarregar a página.</p>
             </div>
         </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+    <script>
+        // Inicializa o player para garantir que os botões apareçam
+        var player = videojs('minha-tv');
+    </script>
 </body>
 </html>
