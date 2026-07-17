@@ -28,7 +28,11 @@
         
         <!-- Player Video.js -->
         <video-js id="minha-tv" class="video-js vjs-big-play-centered" controls preload="auto">
-            <source src="https://tvbrasil-stream.ebc.com.br/EBC_HD-avc1_900000=10003.m3u8"application/x-mpegURL">
+            <!-- Link do Vídeo (já configurado) -->
+            <source src="https://tvbrasil-stream.ebc.com.br/EBC_HD-avc1_900000=10003.m3u8" type="application/x-mpegURL">
+            
+            <!-- Link do Áudio (Cole o seu link abaixo) -->
+            <track kind="main" src="https://tvbrasil-stream.ebc.com.br/EBC_HD-mp4a_128000=20000.m3u8" label="Áudio Alternativo" srclang="pt">
         </video-js>
 
         <a href="index.html" class="btn-voltar">Voltar ao Menu</a>
@@ -46,7 +50,7 @@
             <div class="lista-programas">
                 <h3>Programações diárias:</h3>
                 <ul>
-                     <li>Jornal da TV Brasil</li>
+                    <li>Jornal da TV Brasil</li>
                     <li>Sem Censura</li>
                     <li>Brasil em Dia</li>
                     <li>Caminhos da Reportagem</li>
@@ -65,7 +69,7 @@
     <!-- Scripts -->
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     <script>
-        // Inicializa o player para garantir que os botões apareçam
+        // Inicializa o player
         var player = videojs('minha-tv');
     </script>
 </body>
