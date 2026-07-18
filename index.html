@@ -8,123 +8,72 @@
     <script src="https://pl30304887.effectivecpmnetwork.com/dd/0a/9f/dd0a9f5cf0ee8e5fb39546a26d6aa388.js"></script>
 
     <style>
-        body { 
-            margin: 0; 
-            background: url('imagens/fundo.png') no-repeat left top fixed; 
-            background-size: cover; 
-            font-family: sans-serif; 
-            color: white; 
-            padding: 20px;
-        }
+        body { margin: 0; background: url('imagens/fundo.png') no-repeat left top fixed; background-size: cover; font-family: sans-serif; color: white; padding: 20px; }
+        .header-container { display: flex; flex-direction: column; align-items: center; width: 100%; margin-bottom: 30px; }
+        
+        /* Estilo da barra de pesquisa e área de busca */
+        .search-container { margin-bottom: 20px; width: 100%; max-width: 400px; text-align: center; }
+        .search-container input { width: 100%; padding: 12px; border-radius: 20px; border: none; outline: none; }
+        #resultados-busca { display: flex; justify-content: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+        .item-busca { cursor: pointer; text-align: center; width: 80px; }
+        .item-busca img { width: 60px; height: 60px; border-radius: 10px; border: 2px solid #00d4ff; }
 
-        .header-container { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center;
-            width: 100%;
-            margin-bottom: 30px; 
-        }
-
-        h1 { margin-bottom: 10px; text-shadow: 2px 2px 4px #000; }
-
-        /* Estilo da barra de pesquisa */
-        .search-container { margin-bottom: 20px; width: 100%; max-width: 400px; }
-        .search-container input { 
-            width: 100%; padding: 10px; border-radius: 20px; border: none; outline: none; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-
-        .banner-ad { margin: 20px 0; min-height: 90px; display: flex; justify-content: center; width: 100%; }
-
-        .grid-canais { 
-            display: flex; 
-            justify-content: center; 
-            flex-wrap: wrap; 
-            gap: 30px; 
-            padding: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .canal { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            cursor: pointer; 
-            width: 150px; 
-            transition: 0.3s;
-        }
-
+        .banner-ad { margin: 20px 0; min-height: 90px; }
+        .grid-canais { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; padding: 20px; max-width: 1000px; margin: 0 auto; }
+        .canal { display: flex; flex-direction: column; align-items: center; cursor: pointer; width: 150px; transition: 0.3s; }
         .canal:hover { transform: scale(1.1); }
-
-        .canal img { 
-            width: 150px; 
-            height: 150px; 
-            border-radius: 15px; 
-            border: 3px solid #00d4ff; 
-            background-color: white; 
-            object-fit: cover; 
-        }
-
-        .nome-canal { margin-top: 8px; font-size: 14px; font-weight: bold; text-shadow: 1px 1px 2px #000; }
-
-        .linha-aba { margin-top: 30px; width: 100%; display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
-
-        .aba { cursor: pointer; transition: 0.3s; }
-        .aba:hover { transform: scale(1.05); }
-        .aba img { width: 400px; height: 150px; border-radius: 15px; border: 3px solid #00d4ff; background-color: white; object-fit: contain; }
-
-        .footer-data { text-align: center; font-size: 9px; color: #555; margin-top: 50px; opacity: 0.7; }
-        .espacador { height: 20px; }
-
-        @media (max-width: 900px) { .aba img { width: 280px; height: 105px; } }
-        @media (max-width: 600px) { .canal { width: 120px; } .canal img { width: 120px; height: 120px; } }
+        .canal img { width: 150px; height: 150px; border-radius: 15px; border: 3px solid #00d4ff; background-color: white; object-fit: cover; }
+        .nome-canal { margin-top: 8px; font-weight: bold; text-shadow: 1px 1px 2px #000; font-size: 14px; }
+        .linha-aba { margin-top: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .aba img { width: 400px; height: 150px; border-radius: 15px; border: 3px solid #00d4ff; object-fit: contain; background: white; cursor: pointer; }
+        .footer-data { text-align: center; font-size: 9px; color: #555; margin-top: 50px; }
     </style>
 </head>
 <body>
 
     <div class="header-container">
         <h1>Canais Disponíveis</h1>
-        <!-- Nova Barra de Pesquisa -->
-        <div class="search-container">
-            <input type="text" placeholder="Pesquisar canal...">
-        </div>
         
+        <div class="search-container">
+            <input type="text" id="campoBusca" placeholder="Pesquisar canal..." oninput="filtrarCanais()">
+            <div id="resultados-busca"></div>
+        </div>
+
         <div class="banner-ad">
             <script type="text/javascript">
-                atOptions = {'key' : '1a86e4316840f3397af2438649315a4a', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {}};
+                atOptions = {'key' : '1a86e4316840f3397af2438649315a4a', 'format' : 'iframe', 'height' : 90, 'width' : 728};
             </script>
             <script type="text/javascript" src="//www.effectivecpmnetwork.com/1a86e4316840f3397af2438649315a4a/invoke.js"></script>
         </div>
     </div>
 
-    <!-- Grid Superior (Canais solicitados) -->
-    <div class="grid-canais">
-        <div class="canal" onclick="window.location.href='adrenalinapura.html'"><img src="imagens/adrenalinapura.png"><span class="nome-canal">Adrenalina</span></div>
-        <div class="canal" onclick="window.location.href='sbt.html'"><img src="imagens/sbt.png"><span class="nome-canal">SBT</span></div>
-        <div class="canal" onclick="window.location.href='tvbrasil.html'"><img src="imagens/tvbrasil.png"><span class="nome-canal">TV Brasil</span></div>
-        <div class="canal" onclick="window.location.href='band.html'"><img src="imagens/band.png"><span class="nome-canal">Band</span></div>
-        <div class="canal" onclick="window.location.href='NIKTOONS.html'"><img src="imagens/nik.png"><span class="nome-canal">Niktoons</span></div>
-        <div class="canal" onclick="window.location.href='cazetv.html'"><img src="imagens/cazetv.png"><span class="nome-canal">Caze TV</span></div>
-        <div class="canal" onclick="window.location.href='boomerang.html'"><img src="imagens/boomerang.png"><span class="nome-canal">Boomerang</span></div>
-        <div class="canal" onclick="window.location.href='tvcultura.html'"><img src="imagens/tvcultura.png"><span class="nome-canal">TV Cultura</span></div>
-        <div class="canal" onclick="window.location.href='wording.html'"><img src="imagens/wording.png"><span class="nome-canal">Wording</span></div>
+    <!-- Grade Superior Ordenada -->
+    <div class="grid-canais" id="lista-canais">
+        <div class="canal" data-nome="sbt" onclick="window.location.href='sbt.html'"><img src="imagens/sbt.png"><span class="nome-canal">SBT</span></div>
+        <div class="canal" data-nome="record" onclick="window.location.href='record.html'"><img src="imagens/record.png"><span class="nome-canal">Record TV</span></div>
+        <div class="canal" data-nome="cultura" onclick="window.location.href='tvcultura.html'"><img src="imagens/tvcultura.png"><span class="nome-canal">TV Cultura</span></div>
+        <div class="canal" data-nome="band" onclick="window.location.href='band.html'"><img src="imagens/band.png"><span class="nome-canal">Band</span></div>
+        <div class="canal" data-nome="caze" onclick="window.location.href='cazetv.html'"><img src="imagens/cazetv.png"><span class="nome-canal">Caze TV</span></div>
+        <div class="canal" data-nome="tv brasil" onclick="window.location.href='tvbrasil.html'"><img src="imagens/tvbrasil.png"><span class="nome-canal">TV Brasil</span></div>
+        <div class="canal" data-nome="boomerang" onclick="window.location.href='boomerang.html'"><img src="imagens/boomerang.png"><span class="nome-canal">Boomerang</span></div>
+        <div class="canal" data-nome="niktoons" onclick="window.location.href='NIKTOONS.html'"><img src="imagens/nik.png"><span class="nome-canal">Niktoons</span></div>
+        <div class="canal" data-nome="adrenalina" onclick="window.location.href='adrenalinapura.html'"><img src="imagens/adrenalinapura.png"><span class="nome-canal">Adrenalina</span></div>
+        <div class="canal" data-nome="wording" onclick="window.location.href='wording.html'"><img src="imagens/wording.png"><span class="nome-canal">Wording</span></div>
+    </div>
+
+    <!-- Abas -->
+    <div class="linha-aba">
+        <div class="aba" onclick="window.location.href='filmes.html'"><img src="imagens/filmes.png"></div>
+        <div class="aba" onclick="window.location.href='gringos.html'"><img src="imagens/gringos.png"></div>
     </div>
 
     <div class="linha-aba">
-        <div class="aba" onclick="window.location.href='filmes.html'"><img src="imagens/filmes.png" alt="Filmes"></div>
-        <div class="aba" onclick="window.location.href='gringos.html'"><img src="imagens/gringos.png" alt="Canais Gringos"></div>
+        <div class="aba" onclick="window.location.href='desenhos.html'"><img src="imagens/desenhos.png"></div>
+        <div class="aba" onclick="window.location.href='canaisbr.html'"><img src="imagens/canaisbr.png"></div>
     </div>
 
-    <div class="linha-aba">
-        <div class="aba" onclick="window.location.href='desenhos.html'"><img src="imagens/desenhos.png" alt="Desenhos"></div>
-        <div class="aba" onclick="window.location.href='canaisbr.html'"><img src="imagens/canaisbr.png" alt="Canais BR"></div>
-    </div>
-
-    <!-- Grid Inferior -->
+    <!-- Grid Inferior (Demais) -->
     <div class="grid-canais" style="margin-top: 40px;">
-        <div class="canal" onclick="window.location.href='record.html'"><img src="imagens/record.png"><span class="nome-canal">Record TV</span></div>
         <div class="canal" onclick="window.location.href='cnnbrasil.html'"><img src="imagens/cnnbrasil.png"><span class="nome-canal">CNN Brasil</span></div>
         <div class="canal" onclick="window.location.href='picapau.html'"><img src="imagens/picapau.png"><span class="nome-canal">Pica-Pau</span></div>
         <div class="canal" onclick="window.location.href='tom.html'"><img src="imagens/tom (2).png"><span class="nome-canal">Tom e Jerry</span></div>
@@ -133,20 +82,29 @@
         <div class="canal" onclick="window.location.href='lifeamerica.html'"><img src="imagens/lifeamerica.png"><span class="nome-canal">Life America</span></div>
         <div class="canal" onclick="window.location.href='passofundo.html'"><img src="imagens/passofundo.png"><span class="nome-canal">Passo Fundo</span></div>
         <div class="canal" onclick="window.location.href='tvaldeia.html'"><img src="imagens/tvaldeia.png"><span class="nome-canal">TV Aldeia</span></div>
-        <div class="canal" onclick="window.location.href='tvideonews.html'"><img src="imagens/tvideonews.png"><span class="nome-canal">TV Video News</span></div>
-        <div class="canal" onclick="window.location.href='tvmax.html'"><img src="imagens/tvmax.png"><span class="nome-canal">TV Max</span></div>
-        <div class="canal" onclick="window.location.href='tvsuldeminas.html'"><img src="imagens/tvsuldeminas.png"><span class="nome-canal">Sul de Minas</span></div>
-        <div class="canal" onclick="window.location.href='cidadebrasil.html'"><img src="imagens/cidadebrasil.png"><span class="nome-canal">Cidade Brasil</span></div>
-        <div class="canal" onclick="window.location.href='cinepix.html'"><img src="imagens/cinepix.png"><span class="nome-canal">Cinepix</span></div>
-        <div class="canal" onclick="window.location.href='Grjngo.html'"><img src="imagens/Grjngo.png"><span class="nome-canal">Grjngo</span></div>
-        <div class="canal" onclick="window.location.href='osjet.html'"><img src="imagens/osjet.png"><span class="nome-canal">Osjet</span></div>
-        <div class="canal" onclick="window.location.href='redeclouding.html'"><img src="imagens/redeclouding.png"><span class="nome-canal">Rede Clouding</span></div>
-        <div class="canal" onclick="window.location.href='sessaotrash.html'"><img src="imagens/sessaotrash.png"><span class="nome-canal">Sessão Trash</span></div>
-        <div class="canal" onclick="window.location.href='sonycinema.html'"><img src="imagens/sonycinema.png"><span class="nome-canal">Sony Cinema</span></div>
-        <div class="canal" onclick="window.location.href='sonyoneemo.html'"><img src="imagens/sonyoneemo.png"><span class="nome-canal">Sony Oneemo</span></div>
-        <div class="canal" onclick="window.location.href='tvloading.html'"><img src="imagens/tvloading.png"><span class="nome-canal">TV Loading</span></div>
-        <div class="canal" onclick="window.location.href='webtvcine.html'"><img src="imagens/webtvcine.png"><span class="nome-canal">WebTV Cine</span></div>
     </div>
+
+    <script>
+        function filtrarCanais() {
+            const busca = document.getElementById('campoBusca').value.toLowerCase();
+            const resultados = document.getElementById('resultados-busca');
+            const canais = document.querySelectorAll('.grid-canais .canal');
+            resultados.innerHTML = '';
+            
+            if (busca === '') return;
+
+            let cont = 0;
+            canais.forEach(canal => {
+                const nome = canal.getAttribute('data-nome');
+                if (nome.includes(busca) && cont < 3) {
+                    const clone = canal.cloneNode(true);
+                    clone.className = 'item-busca';
+                    resultados.appendChild(clone);
+                    cont++;
+                }
+            });
+        }
+    </script>
 
     <div class="footer-data">Última atualização: 18/07/2026</div>
 </body>
