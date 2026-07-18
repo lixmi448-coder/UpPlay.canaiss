@@ -25,19 +25,23 @@
         /* Estilos Padrão (Computador) */
         .canal { display: flex; flex-direction: column; align-items: center; cursor: pointer; width: 150px; transition: 0.3s; }
         .canal img { width: 150px; height: 150px; border-radius: 15px; border: 3px solid #00d4ff; background-color: white; object-fit: cover; }
-        .aba img { width: 400px; height: 150px; border-radius: 15px; border: 3px solid #00d4ff; background-color: white; object-fit: contain; cursor: pointer; }
         
-        .nome-canal { margin-top: 8px; font-size: 14px; font-weight: bold; text-shadow: 1px 1px 2px #000; }
+        /* Estilos das Abas */
         .linha-aba { margin-top: 30px; width: 100%; display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
         .aba { cursor: pointer; transition: 0.3s; }
         .aba:hover { transform: scale(1.05); }
+        .aba img { width: 400px; height: 150px; border-radius: 15px; border: 3px solid #00d4ff; background-color: white; object-fit: cover; }
+        
+        .nome-canal { margin-top: 8px; font-size: 14px; font-weight: bold; text-shadow: 1px 1px 2px #000; }
 
         /* Ajustes Exclusivos para Celular */
         @media (max-width: 768px) {
-            .canal { width: 110px; }
-            .canal img { width: 110px; height: 110px; }
-            .aba img { width: 280px; height: 100px; }
-            .grid-canais { gap: 15px; }
+            .canal { width: 110px !important; }
+            .canal img { width: 110px !important; height: 110px !important; }
+            /* Aqui forçamos o alinhamento das abas */
+            .linha-aba { flex-direction: column !important; gap: 15px !important; }
+            .aba img { width: 320px !important; height: 120px !important; }
+            .grid-canais { gap: 15px !important; }
         }
 
         .footer-data { text-align: center; font-size: 9px; color: #555; margin-top: 50px; opacity: 0.7; }
@@ -60,7 +64,6 @@
         </div>
     </div>
 
-    <!-- Grid Superior Ordenada -->
     <div class="grid-canais" id="lista-canais">
         <div class="canal" data-nome="sbt" onclick="window.location.href='sbt.html'"><img src="imagens/sbt.png"><span class="nome-canal">SBT</span></div>
         <div class="canal" data-nome="record" onclick="window.location.href='record.html'"><img src="imagens/record.png"><span class="nome-canal">Record TV</span></div>
@@ -83,7 +86,6 @@
         <div class="aba" onclick="window.location.href='canaisbr.html'"><img src="imagens/canaisbr.png" alt="Canais BR"></div>
     </div>
 
-    <!-- Grid Inferior -->
     <div class="grid-canais" style="margin-top: 40px;">
         <div class="canal" data-nome="cnn" onclick="window.location.href='cnnbrasil.html'"><img src="imagens/cnnbrasil.png"><span class="nome-canal">CNN Brasil</span></div>
         <div class="canal" data-nome="pica pau" onclick="window.location.href='picapau.html'"><img src="imagens/picapau.png"><span class="nome-canal">Pica-Pau</span></div>
@@ -108,7 +110,6 @@
         <div class="canal" data-nome="webtv cine" onclick="window.location.href='webtvcine.html'"><img src="imagens/webtvcine.png"><span class="nome-canal">WebTV Cine</span></div>
     </div>
 
-    <!-- Espaçadores -->
     <div class="espacador"></div><div class="espacador"></div><div class="espacador"></div><div class="espacador"></div>
     <div class="espacador"></div><div class="espacador"></div><div class="espacador"></div><div class="espacador"></div>
     <div class="espacador"></div><div class="espacador"></div><div class="espacador"></div><div class="espacador"></div>
