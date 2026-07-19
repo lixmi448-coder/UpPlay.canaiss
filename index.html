@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UPTVs CANAISS</title>
     
-    <!-- Script do Anúncio Monetag (Vignette) -->
-    <script>(function(s){s.dataset.zone='11348923',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+    <script src="https://pl30304887.effectivecpmnetwork.com/dd/0a/9f/dd0a9f5cf0ee8e5fb39546a26d6aa388.js"></script>
 
     <style>
         body { margin: 0; background: url('imagens/fundo.png') no-repeat left top fixed; background-size: cover; font-family: sans-serif; color: white; padding: 20px; }
@@ -23,9 +22,11 @@
         .banner-ad { margin: 20px 0; min-height: 90px; display: flex; justify-content: center; width: 100%; }
         .grid-canais { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; padding: 20px; max-width: 1000px; margin: 0 auto; }
         
+        /* Estilos Padrão (Computador) */
         .canal { display: flex; flex-direction: column; align-items: center; cursor: pointer; width: 150px; transition: 0.3s; }
         .canal img { width: 150px; height: 150px; border-radius: 15px; border: 3px solid #00d4ff; background-color: white; object-fit: cover; }
         
+        /* Estilos das Abas */
         .linha-aba { margin-top: 30px; width: 100%; display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
         .aba { cursor: pointer; transition: 0.3s; }
         .aba:hover { transform: scale(1.05); }
@@ -33,6 +34,7 @@
         
         .nome-canal { margin-top: 8px; font-size: 14px; font-weight: bold; text-shadow: 1px 1px 2px #000; }
 
+        /* Ajustes Exclusivos para Celular */
         @media (max-width: 768px) {
             .canal { width: 110px !important; }
             .canal img { width: 110px !important; height: 110px !important; }
@@ -43,21 +45,9 @@
 
         .footer-data { text-align: center; font-size: 9px; color: #555; margin-top: 50px; opacity: 0.7; }
         .espacador { height: 20px; }
-
-        /* NOVO: Estilos do Bloqueio de Tela */
-        #bloqueio-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; flex-direction: column; align-items: center; justify-content: center; }
-        #timer { font-size: 60px; font-weight: bold; margin-bottom: 20px; color: #00d4ff; }
-        #btn-liberar { padding: 15px 40px; font-size: 20px; background: #00d4ff; border: none; border-radius: 10px; cursor: not-allowed; color: #000; font-weight: bold; }
     </style>
 </head>
 <body>
-
-    <!-- Janela de Bloqueio (Gating) -->
-    <div id="bloqueio-overlay">
-        <div id="timer">10</div>
-        <p>Aguarde o carregamento do conteúdo para liberar o canal...</p>
-        <button id="btn-liberar" disabled>Aguarde...</button>
-    </div>
 
     <div class="header-container">
         <h1>Canais Disponíveis</h1>
@@ -65,93 +55,68 @@
             <input type="text" id="campoBusca" placeholder="Pesquisar canal..." oninput="filtrarCanais()">
             <div id="resultados-busca"></div>
         </div>
-        <div class="banner-ad"></div>
+        <div class="banner-ad">
+            <script type="text/javascript">
+                atOptions = {'key' : '1a86e4316840f3397af2438649315a4a', 'format' : 'iframe', 'height' : 90, 'width' : 728};
+            </script>
+            <script type="text/javascript" src="//www.effectivecpmnetwork.com/1a86e4316840f3397af2438649315a4a/invoke.js"></script>
+        </div>
     </div>
 
     <div class="grid-canais" id="lista-canais">
-        <!-- Canais mantidos intactos -->
-        <div class="canal" data-nome="sbt" onclick="abrirCanal('sbt.html')"><img src="imagens/sbt.png"><span class="nome-canal">SBT</span></div>
-        <div class="canal" data-nome="record" onclick="abrirCanal('record.html')"><img src="imagens/record.png"><span class="nome-canal">Record TV</span></div>
-        <div class="canal" data-nome="cultura" onclick="abrirCanal('tvcultura.html')"><img src="imagens/tvcultura.png"><span class="nome-canal">TV Cultura</span></div>
-        <div class="canal" data-nome="band" onclick="abrirCanal('band.html')"><img src="imagens/band.png"><span class="nome-canal">Band</span></div>
-        <div class="canal" data-nome="caze" onclick="abrirCanal('cazetv.html')"><img src="imagens/cazetv.png"><span class="nome-canal">Caze TV</span></div>
-        <div class="canal" data-nome="tv brasil" onclick="abrirCanal('tvbrasil.html')"><img src="imagens/tvbrasil.png"><span class="nome-canal">TV Brasil</span></div>
-        <div class="canal" data-nome="boomerang" onclick="abrirCanal('boomerang.html')"><img src="imagens/boomerang.png"><span class="nome-canal">Boomerang</span></div>
-        <div class="canal" data-nome="niktoons" onclick="abrirCanal('NIKTOONS.html')"><img src="imagens/nik.png"><span class="nome-canal">Niktoons</span></div>
-        <div class="canal" data-nome="adrenalina" onclick="abrirCanal('adrenalinapura.html')"><img src="imagens/adrenalinapura.png"><span class="nome-canal">Adrenalina</span></div>
-        <div class="canal" data-nome="wording" onclick="abrirCanal('wording.html')"><img src="imagens/wording.png"><span class="nome-canal">Wording</span></div>
+        <div class="canal" data-nome="sbt" onclick="window.location.href='sbt.html'"><img src="imagens/sbt.png"><span class="nome-canal">SBT</span></div>
+        <div class="canal" data-nome="record" onclick="window.location.href='record.html'"><img src="imagens/record.png"><span class="nome-canal">Record TV</span></div>
+        <div class="canal" data-nome="cultura" onclick="window.location.href='tvcultura.html'"><img src="imagens/tvcultura.png"><span class="nome-canal">TV Cultura</span></div>
+        <div class="canal" data-nome="band" onclick="window.location.href='band.html'"><img src="imagens/band.png"><span class="nome-canal">Band</span></div>
+        <div class="canal" data-nome="caze" onclick="window.location.href='cazetv.html'"><img src="imagens/cazetv.png"><span class="nome-canal">Caze TV</span></div>
+        <div class="canal" data-nome="tv brasil" onclick="window.location.href='tvbrasil.html'"><img src="imagens/tvbrasil.png"><span class="nome-canal">TV Brasil</span></div>
+        <div class="canal" data-nome="boomerang" onclick="window.location.href='boomerang.html'"><img src="imagens/boomerang.png"><span class="nome-canal">Boomerang</span></div>
+        <div class="canal" data-nome="niktoons" onclick="window.location.href='NIKTOONS.html'"><img src="imagens/nik.png"><span class="nome-canal">Niktoons</span></div>
+        <div class="canal" data-nome="adrenalina" onclick="window.location.href='adrenalinapura.html'"><img src="imagens/adrenalinapura.png"><span class="nome-canal">Adrenalina</span></div>
+        <div class="canal" data-nome="wording" onclick="window.location.href='wording.html'"><img src="imagens/wording.png"><span class="nome-canal">Wording</span></div>
     </div>
 
     <div class="linha-aba">
-        <div class="aba" onclick="abrirCanal('filmes.html')"><img src="imagens/filmes.png" alt="Filmes"></div>
-        <div class="aba" onclick="abrirCanal('gringos.html')"><img src="imagens/gringos.png" alt="Canais Gringos"></div>
+        <div class="aba" onclick="window.location.href='filmes.html'"><img src="imagens/filmes.png" alt="Filmes"></div>
+        <div class="aba" onclick="window.location.href='gringos.html'"><img src="imagens/gringos.png" alt="Canais Gringos"></div>
     </div>
     <div class="linha-aba">
-        <div class="aba" onclick="abrirCanal('desenhos.html')"><img src="imagens/desenhos.png" alt="Desenhos"></div>
-        <div class="aba" onclick="abrirCanal('canaisbr.html')"><img src="imagens/canaisbr.png" alt="Canais BR"></div>
+        <div class="aba" onclick="window.location.href='desenhos.html'"><img src="imagens/desenhos.png" alt="Desenhos"></div>
+        <div class="aba" onclick="window.location.href='canaisbr.html'"><img src="imagens/canaisbr.png" alt="Canais BR"></div>
     </div>
 
     <div class="grid-canais" style="margin-top: 40px;">
-        <div class="canal" data-nome="cnn" onclick="abrirCanal('cnnbrasil.html')"><img src="imagens/cnnbrasil.png"><span class="nome-canal">CNN Brasil</span></div>
-        <div class="canal" data-nome="pica pau" onclick="abrirCanal('picapau.html')"><img src="imagens/picapau.png"><span class="nome-canal">Pica-Pau</span></div>
-        <div class="canal" data-nome="tom e jerry" onclick="abrirCanal('tom.html')"><img src="imagens/tom (2).png"><span class="nome-canal">Tom e Jerry</span></div>
-        <div class="canal" data-nome="canal gov" onclick="abrirCanal('canalgov.html')"><img src="imagens/gov.png"><span class="nome-canal">Canal Gov</span></div>
-        <div class="canal" data-nome="mr bean" onclick="abrirCanal('mrbean.html')"><img src="imagens/bean.png"><span class="nome-canal">Mr Bean</span></div>
-        <div class="canal" data-nome="life america" onclick="abrirCanal('lifeamerica.html')"><img src="imagens/lifeamerica.png"><span class="nome-canal">Life America</span></div>
-        <div class="canal" data-nome="passo fundo" onclick="abrirCanal('passofundo.html')"><img src="imagens/passofundo.png"><span class="nome-canal">Passo Fundo</span></div>
-        <div class="canal" data-nome="tv aldeia" onclick="abrirCanal('tvaldeia.html')"><img src="imagens/tvaldeia.png"><span class="nome-canal">TV Aldeia</span></div>
-        <div class="canal" data-nome="tv video news" onclick="abrirCanal('tvideonews.html')"><img src="imagens/tvideonews.png"><span class="nome-canal">TV Video News</span></div>
-        <div class="canal" data-nome="tv max" onclick="abrirCanal('tvmax.html')"><img src="imagens/tvmax.png"><span class="nome-canal">TV Max</span></div>
-        <div class="canal" data-nome="sul de minas" onclick="abrirCanal('tvsuldeminas.html')"><img src="imagens/tvsuldeminas.png"><span class="nome-canal">Sul de Minas</span></div>
-        <div class="canal" data-nome="cidade brasil" onclick="abrirCanal('cidadebrasil.html')"><img src="imagens/cidadebrasil.png"><span class="nome-canal">Cidade Brasil</span></div>
-        <div class="canal" data-nome="cinepix" onclick="abrirCanal('cinepix.html')"><img src="imagens/cinepix.png"><span class="nome-canal">Cinepix</span></div>
-        <div class="canal" data-nome="grjngo" onclick="abrirCanal('Grjngo.html')"><img src="imagens/Grjngo.png"><span class="nome-canal">Grjngo</span></div>
-        <div class="canal" data-nome="osjet" onclick="abrirCanal('osjet.html')"><img src="imagens/osjet.png"><span class="nome-canal">Osjet</span></div>
-        <div class="canal" data-nome="rede clouding" onclick="abrirCanal('redeclouding.html')"><img src="imagens/redeclouding.png"><span class="nome-canal">Rede Clouding</span></div>
-        <div class="canal" data-nome="sessão trash" onclick="abrirCanal('sessaotrash.html')"><img src="imagens/sessaotrash.png"><span class="nome-canal">Sessão Trash</span></div>
-        <div class="canal" data-nome="sony cinema" onclick="abrirCanal('sonycinema.html')"><img src="imagens/sonycinema.png"><span class="nome-canal">Sony Cinema</span></div>
-        <div class="canal" data-nome="sony oneemo" onclick="abrirCanal('sonyoneemo.html')"><img src="imagens/sonyoneemo.png"><span class="nome-canal">Sony Oneemo</span></div>
-        <div class="canal" data-nome="tv loading" onclick="abrirCanal('tvloading.html')"><img src="imagens/tvloading.png"><span class="nome-canal">TV Loading</span></div>
-        <div class="canal" data-nome="webtv cine" onclick="abrirCanal('webtvcine.html')"><img src="imagens/webtvcine.png"><span class="nome-canal">WebTV Cine</span></div>
-        <div class="canal" data-nome="cine catastrofe" onclick="abrirCanal('cinecatas.html')"><img src="imagens/cinecatas.png"><span class="nome-canal">Cine Catástrofe</span></div>
+        <div class="canal" data-nome="cnn" onclick="window.location.href='cnnbrasil.html'"><img src="imagens/cnnbrasil.png"><span class="nome-canal">CNN Brasil</span></div>
+        <div class="canal" data-nome="pica pau" onclick="window.location.href='picapau.html'"><img src="imagens/picapau.png"><span class="nome-canal">Pica-Pau</span></div>
+        <div class="canal" data-nome="tom e jerry" onclick="window.location.href='tom.html'"><img src="imagens/tom (2).png"><span class="nome-canal">Tom e Jerry</span></div>
+        <div class="canal" data-nome="canal gov" onclick="window.location.href='canalgov.html'"><img src="imagens/gov.png"><span class="nome-canal">Canal Gov</span></div>
+        <div class="canal" data-nome="mr bean" onclick="window.location.href='mrbean.html'"><img src="imagens/bean.png"><span class="nome-canal">Mr Bean</span></div>
+        <div class="canal" data-nome="life america" onclick="window.location.href='lifeamerica.html'"><img src="imagens/lifeamerica.png"><span class="nome-canal">Life America</span></div>
+        <div class="canal" data-nome="passo fundo" onclick="window.location.href='passofundo.html'"><img src="imagens/passofundo.png"><span class="nome-canal">Passo Fundo</span></div>
+        <div class="canal" data-nome="tv aldeia" onclick="window.location.href='tvaldeia.html'"><img src="imagens/tvaldeia.png"><span class="nome-canal">TV Aldeia</span></div>
+        <div class="canal" data-nome="tv video news" onclick="window.location.href='tvideonews.html'"><img src="imagens/tvideonews.png"><span class="nome-canal">TV Video News</span></div>
+        <div class="canal" data-nome="tv max" onclick="window.location.href='tvmax.html'"><img src="imagens/tvmax.png"><span class="nome-canal">TV Max</span></div>
+        <div class="canal" data-nome="sul de minas" onclick="window.location.href='tvsuldeminas.html'"><img src="imagens/tvsuldeminas.png"><span class="nome-canal">Sul de Minas</span></div>
+        <div class="canal" data-nome="cidade brasil" onclick="window.location.href='cidadebrasil.html'"><img src="imagens/cidadebrasil.png"><span class="nome-canal">Cidade Brasil</span></div>
+        <div class="canal" data-nome="cinepix" onclick="window.location.href='cinepix.html'"><img src="imagens/cinepix.png"><span class="nome-canal">Cinepix</span></div>
+        <div class="canal" data-nome="grjngo" onclick="window.location.href='Grjngo.html'"><img src="imagens/Grjngo.png"><span class="nome-canal">Grjngo</span></div>
+        <div class="canal" data-nome="osjet" onclick="window.location.href='osjet.html'"><img src="imagens/osjet.png"><span class="nome-canal">Osjet</span></div>
+        <div class="canal" data-nome="rede clouding" onclick="window.location.href='redeclouding.html'"><img src="imagens/redeclouding.png"><span class="nome-canal">Rede Clouding</span></div>
+        <div class="canal" data-nome="sessão trash" onclick="window.location.href='sessaotrash.html'"><img src="imagens/sessaotrash.png"><span class="nome-canal">Sessão Trash</span></div>
+        <div class="canal" data-nome="sony cinema" onclick="window.location.href='sonycinema.html'"><img src="imagens/sonycinema.png"><span class="nome-canal">Sony Cinema</span></div>
+        <div class="canal" data-nome="sony oneemo" onclick="window.location.href='sonyoneemo.html'"><img src="imagens/sonyoneemo.png"><span class="nome-canal">Sony Oneemo</span></div>
+        <div class="canal" data-nome="tv loading" onclick="window.location.href='tvloading.html'"><img src="imagens/tvloading.png"><span class="nome-canal">TV Loading</span></div>
+        <div class="canal" data-nome="webtv cine" onclick="window.location.href='webtvcine.html'"><img src="imagens/webtvcine.png"><span class="nome-canal">WebTV Cine</span></div>
+        <div class="canal" data-nome="cine catastrofe" onclick="window.location.href='cinecatas.html'"><img src="imagens/cinecatas.png"><span class="nome-canal">Cine Catástrofe</span></div>
     </div>
 
-    <div class="footer-data">Última atualização: 18/07/2026</div>
+    <div class="espacador"></div><div class="espacador"></div><div class="espacador"></div><div class="espacador"></div>
+    <div class="espacador"></div><div class="espacador"></div><div class="espacador"></div><div class="espacador"></div>
+    <div class="espacador"></div><div class="espacador"></div><div class="espacador"></div><div class="espacador"></div>
+    <div class="espacador"></div><div class="espacador"></div><div class="espacador"></div><div class="espacador"></div>
+    <div class="espacador"></div><div class="espacador"></div><div class="espacador"></div><div class="espacador"></div>
 
     <script>
-        let canalDestino = "";
-        const overlay = document.getElementById('bloqueio-overlay');
-        const btn = document.getElementById('btn-liberar');
-        const timerDiv = document.getElementById('timer');
-
-        function abrirCanal(url) {
-            canalDestino = url;
-            overlay.style.display = 'flex';
-            iniciarContagem();
-        }
-
-        function iniciarContagem() {
-            let segundos = 10;
-            timerDiv.innerText = segundos;
-            btn.disabled = true;
-            btn.innerText = "Aguarde...";
-            btn.style.cursor = "not-allowed";
-
-            let intervalo = setInterval(() => {
-                segundos--;
-                timerDiv.innerText = segundos;
-                if (segundos <= 0) {
-                    clearInterval(intervalo);
-                    btn.disabled = false;
-                    btn.innerText = "ACESSAR AGORA";
-                    btn.style.cursor = "pointer";
-                    btn.onclick = function() {
-                        window.location.href = canalDestino;
-                    };
-                }
-            }, 1000);
-        }
-
         function filtrarCanais() {
             const busca = document.getElementById('campoBusca').value.toLowerCase();
             const resultados = document.getElementById('resultados-busca');
@@ -170,5 +135,7 @@
             });
         }
     </script>
+
+    <div class="footer-data">Última atualização: 18/07/2026</div>
 </body>
 </html>
