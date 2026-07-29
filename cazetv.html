@@ -2,122 +2,113 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Canais Gringos</title>
-    <!-- Importando a biblioteca HLS.js para suportar links .m3u8 nativamente no navegador -->
+    <title>Cazé TV Ao Vivo</title>
+    <!-- Importando a biblioteca HLS.js para rodar links .m3u8 direto no navegador -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
-        /* Paleta: Azul Marinho Profundo e Aconchegante */
-        body { display: flex; height: 100vh; margin: 0; background: #0a0e1a; color: #e0e0e0; font-family: sans-serif; }
+        body { 
+            margin: 0; 
+            background-color: #0a192f !important; 
+            color: white; 
+            font-family: sans-serif; 
+            display: flex; 
+            height: 100vh; 
+        }
         
-        #btn-voltar { position: absolute; top: 10px; left: 10px; z-index: 999; cursor: pointer; font-size: 20px; color: #8899aa; text-decoration: none; background: #161b2a; padding: 5px 12px; border-radius: 4px; border: 1px solid #2a3a50; }
+        .video-box { flex: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
-        /* Sidebar mais escura que o fundo da tela */
-        #sidebar { width: 450px; display: flex; flex-direction: column; background: #070a14; border-right: 1px solid #1a2535; }
+        /* Player ajustado para ficar travado e limpo */
+        .player-container { width: 80%; height: 500px; border-radius: 15px; border: 4px solid #fff; overflow: hidden; background: #000; }
         
-        #topo-sidebar { height: 30%; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+        /* Estilização do player de vídeo nativo */
+        video { width: 100%; height: 100%; object-fit: cover; }
         
-        #status-online { margin-top: 15px; margin-bottom: 15px; font-size: 13px; display: flex; align-items: center; gap: 8px; color: #4ade80; }
-        .bolinha-verde { width: 10px; height: 10px; background: #4ade80; border-radius: 50%; }
+        .sidebar { 
+            flex: 1; 
+            background-color: #112240 !important; 
+            padding: 20px; 
+            border-left: 2px solid #00d4ff;
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+        }
         
-        #lista-canais { height: 70%; overflow-y: auto; padding: 10px; }
+        .banner-container { width: 300px; height: 250px; flex-shrink: 0; margin-bottom: 20px; }
+        .conteudo-abaixo { width: 90%; margin-top: 50px; text-align: center; }
+        .btn-voltar { display: block; margin-top: 20px; padding: 10px; background: #00d4ff; text-decoration: none; color: black; font-weight: bold; text-align: center; border-radius: 5px; }
         
-        /* Botões de canal com azul sóbrio */
-        .canal-btn { display: flex; align-items: center; width: 100%; padding: 12px; margin-bottom: 6px; background: #111827; border: 1px solid #1e293b; color: #cbd5e1; cursor: pointer; border-radius: 5px; transition: background 0.3s; font-size: 14px; }
-        .canal-btn:hover { background: #1e293b; border-color: #334155; }
-        
-        .num-canal { font-size: 11px; color: #64748b; margin-right: 12px; width: 20px; font-weight: bold; }
-        .bandeira { font-size: 16px; margin-right: 10px; }
-
-        #main-content { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 20px; background: #0a0e1a; }
-        
-        /* Player de vídeo HTML5 substituindo o iframe antigo */
-        #video-player { width: 100%; height: 80%; background: #000; box-shadow: 0 4px 15px rgba(0,0,0,0.5); object-fit: contain; }
+        .lista-programas { text-align: left; color: #fff; font-size: 14px; }
+        .info-fixa { margin-top: 40px; padding-top: 20px; border-top: 1px solid #00d4ff; font-size: 13px; opacity: 0.8; }
+        ul { padding-left: 20px; margin-top: 10px; }
+        li { margin-bottom: 5px; }
     </style>
 </head>
 <body>
-
-    <a href="index.html" id="btn-voltar">← Voltar</a>
-
-    <div id="sidebar">
-        <div id="topo-sidebar">
-            <script>atOptions = {'key':'3bd1bd43807e15df794b97ccde0fed87','format':'iframe','height':250,'width':300,'params':{}};</script>
-            <script src="https://www.highperformanceformat.com/3bd1bd43807e15df794b97ccde0fed87/invoke.js"></script>
+    <div class="video-box">
+        <h2>Cazé TV AO VIVO</h2>
+        
+        <!-- Player Integrado com suporte a HLS -->
+        <div class="player-container">
+            <video id="videoPlayer" controls autoplay playsinline></video>
         </div>
         
-        <div id="status-online"><div class="bolinha-verde"></div> <span id="contagem">0 canais online</span></div>
-        
-        <div id="lista-canais">Carregando...</div>
+        <a href="index.html" class="btn-voltar">Voltar ao Menu</a>
     </div>
 
-    <div id="main-content">
-        <!-- Alterado de iframe para video player nativo compatível com m3u8 -->
-        <video id="video-player" controls autoplay playsinline></video>
+    <div class="sidebar">
+        <div class="banner-container">
+            <script type="text/javascript">
+                atOptions = { 'key' : '3bd1bd43807e15df794b97ccde0fed87', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="https://www.highperformanceformat.com/3bd1bd43807e15df794b97ccde0fed87/invoke.js"></script>
+        </div>
+
+        <div class="conteudo-abaixo">
+            <div class="lista-programas">
+                <h3>Programações diárias:</h3>
+                <ul>
+                    <li>Cazé News</li>
+                    <li>Sessão Animação</li>
+                    <li>Documentários Especiais</li>
+                    <li>Cazé Entretenimento</li>
+                    <li>Séries Independentes</li>
+                    <li>Cine Cazé</li>
+                    <li>Musicais e Shows</li>
+                    <li>Cazé na Madrugada</li>
+                </ul>
+            </div>
+
+            <div class="info-fixa">
+                <p>Gostou da transmissão? Compartilhe com os amigos! Siga a gente nas redes sociais.</p>
+            </div>
+        </div>
     </div>
 
+    <!-- Script que faz o player funcionar automaticamente -->
     <script>
-        const bandeiras = { "Estados Unidos": "🇺🇸", "Brasil": "🇧🇷", "Portugal": "🇵🇹", "Argentina": "🇦🇷", "Espanha": "🇪🇸" };
+        var video = document.getElementById('videoPlayer');
+        var videoSrc = 'https://amg01391-amg01391c10-tcl-br-9630.playouts.now.amagi.tv/720p-cc/index.m3u8';
 
-        // Função global para gerenciar a troca e reprodução dos canais via HLS.js
-        function carregarCanal(link) {
-            const video = document.getElementById('video-player');
-            
-            if (Hls.isSupported()) {
-                if (window.hlsInstance) {
-                    window.hlsInstance.destroy(); // Destroi a instância anterior para evitar sobrecarga
-                }
-                const hls = new Hls();
-                window.hlsInstance = hls;
-                hls.loadSource(link);
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    video.play().catch(err => console.log("Autoplay impedido pelo navegador:", err));
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                video.play().catch(function(error) {
+                    console.log("Autoplay bloqueado pelo navegador, aguardando interação:", error);
                 });
-            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                // Suporte nativo (ex: Safari)
-                video.src = link;
-                video.addEventListener('loadedmetadata', function() {
-                    video.play().catch(err => console.log("Autoplay impedido pelo navegador:", err));
-                });
-            }
-        }
-
-        fetch('canaisgringos.html/canais.json')
-            .then(response => response.json())
-            .then(dados => {
-                const container = document.getElementById('lista-canais');
-                container.innerHTML = ''; 
-                
-                let totalCanais = 0;
-                let contadorNum = 1;
-
-                // Ordenação: EUA primeiro, Brasil segundo, restante por ordem alfabética
-                const chaves = Object.keys(dados);
-                const paisesOrdenados = [
-                    "Estados Unidos", 
-                    "Brasil", 
-                    ...chaves.filter(p => p !== "Estados Unidos" && p !== "Brasil").sort()
-                ].filter(p => chaves.includes(p));
-
-                paisesOrdenados.forEach(pais => {
-                    const icone = bandeiras[pais] || "🌐";
-                    for (let nomeCanal in dados[pais]) {
-                        totalCanais++;
-                        let btn = document.createElement('button');
-                        btn.className = 'canal-btn';
-                        btn.innerHTML = `<span class="num-canal">${contadorNum++}</span><span class="bandeira">${icone}</span> <span>${nomeCanal}</span>`;
-                        btn.onclick = () => {
-                            let link = dados[pais][nomeCanal];
-                            carregarCanal(link);
-                        };
-                        container.appendChild(btn);
-                    }
-                });
-
-                document.getElementById('contagem').innerText = `${totalCanais} canais online no momento`;
-            })
-            .catch(() => {
-                document.getElementById('lista-canais').innerHTML = '<p style="color:#64748b; text-align:center;">Aguardando servidores...</p>';
             });
+        } 
+        // Para dispositivos que já possuem suporte nativo a HLS (como Safari no iPhone/Mac)
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+            video.addEventListener('loadedmetadata', function() {
+                video.play().catch(function(error) {
+                    console.log("Autoplay bloqueado pelo navegador:", error);
+                });
+            });
+        }
     </script>
 </body>
 </html>
