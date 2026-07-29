@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Cazé TV Ao Vivo</title>
+    <!-- Importando a biblioteca HLS.js para rodar links .m3u8 direto no navegador -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         body { 
             margin: 0; 
@@ -16,8 +18,10 @@
         .video-box { flex: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
         /* Player ajustado para ficar travado e limpo */
-        .player-container { width: 80%; height: 500px; border-radius: 15px; border: 4px solid #fff; overflow: hidden; }
-        iframe { width: 100%; height: 100%; border: none; }
+        .player-container { width: 80%; height: 500px; border-radius: 15px; border: 4px solid #fff; overflow: hidden; background: #000; }
+        
+        /* Estilização do player de vídeo nativo */
+        video { width: 100%; height: 100%; object-fit: cover; }
         
         .sidebar { 
             flex: 1; 
@@ -44,9 +48,9 @@
     <div class="video-box">
         <h2>Cazé TV AO VIVO</h2>
         
-        <!-- Player Integrado (Sem interface de terceiros) -->
+        <!-- Player Integrado com suporte a HLS -->
         <div class="player-container">
-            <iframe src="https://amg01391-amg01391c10-tcl-br-9630.playouts.now.amagi.tv/720p-cc/index.m3u8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <video id="videoPlayer" controls autoplay playsinline></video>
         </div>
         
         <a href="index.html" class="btn-voltar">Voltar ao Menu</a>
@@ -80,5 +84,31 @@
             </div>
         </div>
     </div>
+
+    <!-- Script que faz o player funcionar automaticamente -->
+    <script>
+        var video = document.getElementById('videoPlayer');
+        var videoSrc = 'https://amg01391-amg01391c10-tcl-br-9630.playouts.now.amagi.tv/720p-cc/index.m3u8';
+
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                video.play().catch(function(error) {
+                    console.log("Autoplay bloqueado pelo navegador, aguardando interação:", error);
+                });
+            });
+        } 
+        // Para dispositivos que já possuem suporte nativo a HLS (como Safari no iPhone/Mac)
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+            video.addEventListener('loadedmetadata', function() {
+                video.play().catch(function(error) {
+                    console.log("Autoplay bloqueado pelo navegador:", error);
+                });
+            });
+        }
+    </script>
 </body>
 </html>
