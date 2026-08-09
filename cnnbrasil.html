@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>CNN Brasil Ao Vivo</title>
+    <!-- Importando a biblioteca HLS.js para rodar links .m3u8 direto no navegador -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         body { 
             margin: 0; 
@@ -14,7 +16,12 @@
         }
         
         .video-box { flex: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        iframe { width: 80%; height: 500px; border-radius: 15px; border: 4px solid #fff; }
+        
+        /* Player ajustado para ficar travado e limpo */
+        .player-container { width: 80%; height: 500px; border-radius: 15px; border: 4px solid #fff; overflow: hidden; background: #000; }
+        
+        /* Estilização do player de vídeo nativo */
+        video { width: 100%; height: 100%; object-fit: cover; }
         
         .sidebar { 
             flex: 1; 
@@ -27,65 +34,41 @@
             overflow-y: auto;
         }
         
-        .banner-container {
-            width: 300px;
-            height: 250px;
-            flex-shrink: 0;
-            margin-bottom: 20px;
-        }
-
-        .conteudo-abaixo {
-            width: 90%;
-            margin-top: 300px !important; 
-            text-align: center;
-        }
-
+        .banner-container { width: 300px; height: 250px; flex-shrink: 0; margin-bottom: 20px; }
+        .conteudo-abaixo { width: 90%; margin-top: 50px; text-align: center; }
         .btn-voltar { display: block; margin-top: 20px; padding: 10px; background: #00d4ff; text-decoration: none; color: black; font-weight: bold; text-align: center; border-radius: 5px; }
         
-        .lista-programas { 
-            text-align: left;
-            color: #fff;
-            font-size: 14px;
-        }
-        
-        .info-fixa { 
-            margin-top: 40px; 
-            padding-top: 20px;
-            border-top: 1px solid #00d4ff;
-            font-size: 13px;
-            opacity: 0.8;
-        }
-        
+        .lista-programas { text-align: left; color: #fff; font-size: 14px; }
+        .info-fixa { margin-top: 40px; padding-top: 20px; border-top: 1px solid #00d4ff; font-size: 13px; opacity: 0.8; }
         ul { padding-left: 20px; margin-top: 10px; }
         li { margin-bottom: 5px; }
     </style>
 </head>
 <body>
     <div class="video-box">
-        <h2>CNN BRASIL AO VIVO</h2>
-        <iframe src="http://kraewert.top:80/kHCf7gDxJx3Eb4/3dEyWAtr4Fu7Rf/151828.ts" frameborder="0" allowfullscreen></iframe>
+        <h2>CNN Brasil Ao Vivo</h2>
+        
+        <!-- Player Integrado com suporte a HLS -->
+        <div class="player-container">
+            <video id="videoPlayer" controls autoplay playsinline></video>
+        </div>
+        
         <a href="index.html" class="btn-voltar">Voltar ao Menu</a>
     </div>
 
     <div class="sidebar">
         <div class="banner-container">
             <script type="text/javascript">
-                atOptions = {
-                    'key' : '3bd1bd43807e15df794b97ccde0fed87',
-                    'format' : 'iframe',
-                    'height' : 250,
-                    'width' : 300,
-                    'params' : {}
-                };
+                atOptions = { 'key' : '3bd1bd43807e15df794b97ccde0fed87', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
             </script>
             <script type="text/javascript" src="https://www.highperformanceformat.com/3bd1bd43807e15df794b97ccde0fed87/invoke.js"></script>
         </div>
 
         <div class="conteudo-abaixo">
             <div class="lista-programas">
-                <h3>Principais Noticiários:</h3>
+                <h3>Programações diárias:</h3>
                 <ul>
-                    <li>CNN Novo Dia</li>
+                  <li>CNN Novo Dia</li>
                     <li>Live CNN</li>
                     <li>CNN Arena</li>
                     <li>Expresso CNN</li>
@@ -97,9 +80,35 @@
             </div>
 
             <div class="info-fixa">
-                <p>Gostou da transmissão? Compartilhe com os amigos! Siga a gente nas redes sociais. Problemas na imagem? Tente recarregar a página.</p>
+                <p>Gostou da transmissão? Compartilhe com os amigos! Siga a gente nas redes sociais.</p>
             </div>
         </div>
     </div>
+
+    <!-- Script que faz o player funcionar automaticamente -->
+    <script>
+        var video = document.getElementById('videoPlayer');
+        var videoSrc = 'http://kraewert.top:80/kHCf7gDxJx3Eb4/3dEyWAtr4Fu7Rf/151828.ts';
+
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                video.play().catch(function(error) {
+                    console.log("Autoplay bloqueado pelo navegador, aguardando interação:", error);
+                });
+            });
+        } 
+        // Para dispositivos que já possuem suporte nativo a HLS (como Safari no iPhone/Mac)
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+            video.addEventListener('loadedmetadata', function() {
+                video.play().catch(function(error) {
+                    console.log("Autoplay bloqueado pelo navegador:", error);
+                });
+            });
+        }
+    </script>
 </body>
 </html>
