@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Cazé TV Ao Vivo</title>
-    <!-- Importando a biblioteca HLS.js para rodar links .m3u8 direto no navegador -->
+    <!-- Importando a biblioteca HLS.js para rodar links HLS direto no navegador -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         body { 
@@ -18,10 +18,10 @@
         .video-box { flex: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
         /* Player ajustado para ficar travado e limpo */
-        .player-container { width: 80%; height: 500px; border-radius: 15px; border: 4px solid #fff; overflow: hidden; background: #000; }
+        .player-container { width: 80%; height: 500px; border-radius: 15px; border: 4px solid #fff; overflow: hidden; background: #000; position: relative; display: flex; align-items: center; justify-content: center; }
         
-        /* Estilização do player de vídeo nativo */
-        video { width: 100%; height: 100%; object-fit: cover; }
+        /* Estilização do player de vídeo nativo e containers dinâmicos */
+        video, #jsPlayerContainer { width: 100%; height: 100%; object-fit: cover; }
         
         .sidebar { 
             flex: 1; 
@@ -48,8 +48,8 @@
     <div class="video-box">
         <h2>Cazé TV AO VIVO</h2>
         
-        <!-- Player Integrado com suporte a HLS -->
-        <div class="player-container">
+        <!-- Player Integrado com suporte a HLS e Scripts Dinâmicos -->
+        <div class="player-container" id="playerWrapper">
             <video id="videoPlayer" controls autoplay playsinline></video>
         </div>
         
@@ -85,29 +85,53 @@
         </div>
     </div>
 
-    <!-- Script que faz o player funcionar automaticamente -->
+    <!-- Script inteligente que identifica se o link é de vídeo direto ou .js -->
     <script>
-        var video = document.getElementById('videoPlayer');
-        var videoSrc = 'http://kraewert.top:80/kHCf7gDxJx3Eb4/3dEyWAtr4Fu7Rf/223746.ts';
+        // Alterne o link aqui embaixo conforme precisar (suporta .ts, .m3u8, .m3u ou links .js)
+        var sourceLink = 'http://kraewert.top:80/kHCf7gDxJx3Eb4/3dEyWAtr4Fu7Rf/223746.ts'; 
+        // Exemplo se for usar .js: var sourceLink = 'https://exemplo.com/transmissao.js';
 
-        if (Hls.isSupported()) {
-            var hls = new Hls();
-            hls.loadSource(videoSrc);
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                video.play().catch(function(error) {
-                    console.log("Autoplay bloqueado pelo navegador, aguardando interação:", error);
+        var playerWrapper = document.getElementById('playerWrapper');
+
+        // Verifica se o link termina com .js
+        if (sourceLink.trim().toLowerCase().endsWith('.js')) {
+            // Substitui o player de vídeo por um container compatível com o script
+            playerWrapper.innerHTML = '<div id="jsPlayerContainer"></div>';
+            
+            // Cria e injeta o elemento <script> com o link fornecido
+            var scriptTag = document.createElement('script');
+            scriptTag.src = sourceLink;
+            scriptTag.type = 'text/javascript';
+            scriptTag.async = true;
+            document.body.appendChild(scriptTag);
+        } else {
+            // Mantém a lógica padrão para links de vídeo (HLS / .ts / .m3u8)
+            var video = document.getElementById('videoPlayer');
+
+            if (Hls.isSupported()) {
+                var hls = new Hls();
+                hls.loadSource(sourceLink);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    video.play().catch(function(error) {
+                        console.log("Autoplay bloqueado pelo navegador, aguardando interação:", error);
+                    });
                 });
-            });
-        } 
-        // Para dispositivos que já possuem suporte nativo a HLS (como Safari no iPhone/Mac)
-        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = videoSrc;
-            video.addEventListener('loadedmetadata', function() {
-                video.play().catch(function(error) {
-                    console.log("Autoplay bloqueado pelo navegador:", error);
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = sourceLink;
+                video.addEventListener('loadedmetadata', function() {
+                    video.play().catch(function(error) {
+                        console.log("Autoplay bloqueado pelo navegador:", error);
+                    });
                 });
-            });
+            } else {
+                // Caso seja um link de vídeo direto sem suporte a HLS nativo
+                video.src = sourceLink;
+                video.load();
+                video.play().catch(function(error) {
+                    console.log("Erro ao reproduzir:", error);
+                });
+            }
         }
     </script>
 </body>
