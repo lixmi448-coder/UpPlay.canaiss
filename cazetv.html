@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Cazé TV Ao Vivo</title>
-    <!-- Importando a biblioteca HLS.js para rodar links HLS direto no navegador -->
+    <!-- Importando a biblioteca HLS.js -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         body { 
@@ -20,8 +20,8 @@
         /* Player ajustado para ficar travado e limpo */
         .player-container { width: 80%; height: 500px; border-radius: 15px; border: 4px solid #fff; overflow: hidden; background: #000; position: relative; display: flex; align-items: center; justify-content: center; }
         
-        /* Estilização do player de vídeo nativo e containers dinâmicos */
-        video, #jsPlayerContainer { width: 100%; height: 100%; object-fit: cover; }
+        /* Estilização do player de vídeo */
+        video { width: 100%; height: 100%; object-fit: cover; }
         
         .sidebar { 
             flex: 1; 
@@ -48,8 +48,8 @@
     <div class="video-box">
         <h2>Cazé TV AO VIVO</h2>
         
-        <!-- Player Integrado com suporte a HLS e Scripts Dinâmicos -->
-        <div class="player-container" id="playerWrapper">
+        <!-- Player Integrado -->
+        <div class="player-container">
             <video id="videoPlayer" controls autoplay playsinline></video>
         </div>
         
@@ -85,53 +85,61 @@
         </div>
     </div>
 
-    <!-- Script inteligente que identifica se o link é de vídeo direto ou .js -->
+    <!-- Script otimizado para links .ts e .m3u8 -->
     <script>
-        // Alterne o link aqui embaixo conforme precisar (suporta .ts, .m3u8, .m3u ou links .js)
-        var sourceLink = 'http://kraewert.top:80/kHCf7gDxJx3Eb4/3dEyWAtr4Fu7Rf/223746.ts'; 
-        // Exemplo se for usar .js: var sourceLink = 'https://exemplo.com/transmissao.js';
+        var video = document.getElementById('videoPlayer');
+        var videoSrc = 'http://kraewert.top:80/kHCf7gDxJx3Eb4/3dEyWAtr4Fu7Rf/223746.ts';
 
-        var playerWrapper = document.getElementById('playerWrapper');
-
-        // Verifica se o link termina com .js
-        if (sourceLink.trim().toLowerCase().endsWith('.js')) {
-            // Substitui o player de vídeo por um container compatível com o script
-            playerWrapper.innerHTML = '<div id="jsPlayerContainer"></div>';
-            
-            // Cria e injeta o elemento <script> com o link fornecido
-            var scriptTag = document.createElement('script');
-            scriptTag.src = sourceLink;
-            scriptTag.type = 'text/javascript';
-            scriptTag.async = true;
-            document.body.appendChild(scriptTag);
-        } else {
-            // Mantém a lógica padrão para links de vídeo (HLS / .ts / .m3u8)
-            var video = document.getElementById('videoPlayer');
-
-            if (Hls.isSupported()) {
-                var hls = new Hls();
-                hls.loadSource(sourceLink);
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    video.play().catch(function(error) {
-                        console.log("Autoplay bloqueado pelo navegador, aguardando interação:", error);
-                    });
-                });
-            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                video.src = sourceLink;
-                video.addEventListener('loadedmetadata', function() {
-                    video.play().catch(function(error) {
-                        console.log("Autoplay bloqueado pelo navegador:", error);
-                    });
-                });
-            } else {
-                // Caso seja um link de vídeo direto sem suporte a HLS nativo
-                video.src = sourceLink;
-                video.load();
+        if (Hls.isSupported()) {
+            var hls = new Hls({
+                xhrSetup: function (xhr, url) {
+                    // Configuração para ajudar a passar por restrições comuns de servidores IPTV
+                    xhr.withCredentials = false;
+                }
+            });
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
                 video.play().catch(function(error) {
-                    console.log("Erro ao reproduzir:", error);
+                    console.log("Autoplay bloqueado pelo navegador, clique no player para iniciar:", error);
                 });
-            }
+            });
+            
+            // Tratamento de erro caso o link .ts esteja instável ou fora do ar
+            hls.on(Hls.Events.ERROR, function(event, data) {
+                if (data.fatal) {
+                    switch(data.type) {
+                        case Hls.ErrorTypes.NETWORK_ERROR:
+                            console.log("Erro de rede ao tentar carregar o link .ts. Tentando recuperar...");
+                            hls.startLoad();
+                            break;
+                        case Hls.ErrorTypes.MEDIA_ERROR:
+                            console.log("Erro de mídia. Tentando recuperar...");
+                            hls.recoverMediaError();
+                            break;
+                        default:
+                            console.log("Erro fatal irre recuperação automática.");
+                            hls.destroy();
+                            break;
+                    }
+                }
+            });
+        } 
+        // Para navegadores com suporte nativo a HLS (Safari)
+        else if (video.canPlayType('application/vnd.apple.mpegurl') || video.canPlayType('video/mp2t')) {
+            video.src = videoSrc;
+            video.addEventListener('loadedmetadata', function() {
+                video.play().catch(function(error) {
+                    console.log("Autoplay bloqueado pelo navegador:", error);
+                });
+            });
+        } else {
+            // Tentativa direta para fallback
+            video.src = videoSrc;
+            video.load();
+            video.play().catch(function(error) {
+                console.log("Erro na reprodução direta:", error);
+            });
         }
     </script>
 </body>
