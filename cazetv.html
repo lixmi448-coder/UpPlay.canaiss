@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Cazé TV Ao Vivo</title>
-    <!-- Importando a biblioteca HLS.js -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <!-- Importando a biblioteca mpegts.js para suporte total a links .ts de IPTV -->
+    <script src="https://cdn.jsdelivr.net/npm/mpegts.js@1.7.3/dist/mpegts.js"></script>
     <style>
         body { 
             margin: 0; 
@@ -61,7 +61,7 @@
             <script type="text/javascript">
                 atOptions = { 'key' : '3bd1bd43807e15df794b97ccde0fed87', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
             </script>
-            <script type="text/javascript" src="https://www.highperformanceformat.com/3bd1bd43807e15df794b97ccde0fed87/invoke.js"></script>
+            <script type="text/javascript" src="https://www.highperformanceformat.com/3bd1bd43807e15df794w97ccde0fed87/invoke.js"></script>
         </div>
 
         <div class="conteudo-abaixo">
@@ -85,60 +85,35 @@
         </div>
     </div>
 
-    <!-- Script otimizado para links .ts e .m3u8 -->
+    <!-- Script de reprodução especializado para links .ts -->
     <script>
-        var video = document.getElementById('videoPlayer');
+        var videoElement = document.getElementById('videoPlayer');
         var videoSrc = 'http://kraewert.top:80/kHCf7gDxJx3Eb4/3dEyWAtr4Fu7Rf/223746.ts';
 
-        if (Hls.isSupported()) {
-            var hls = new Hls({
-                xhrSetup: function (xhr, url) {
-                    // Configuração para ajudar a passar por restrições comuns de servidores IPTV
-                    xhr.withCredentials = false;
-                }
-            });
-            hls.loadSource(videoSrc);
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                video.play().catch(function(error) {
-                    console.log("Autoplay bloqueado pelo navegador, clique no player para iniciar:", error);
-                });
+        // Verifica se o navegador suporta o mpegts para streams diretos .ts
+        if (mpegts.getFeatureList().mseLivePlayback) {
+            var mpegtsPlayer = mpegts.createPlayer({
+                type: 'mpegts',  // Define explicitamente o tipo do stream como MPEG-TS
+                isLive: true,    // Trata como transmissão ao vivo
+                url: videoSrc
             });
             
-            // Tratamento de erro caso o link .ts esteja instável ou fora do ar
-            hls.on(Hls.Events.ERROR, function(event, data) {
-                if (data.fatal) {
-                    switch(data.type) {
-                        case Hls.ErrorTypes.NETWORK_ERROR:
-                            console.log("Erro de rede ao tentar carregar o link .ts. Tentando recuperar...");
-                            hls.startLoad();
-                            break;
-                        case Hls.ErrorTypes.MEDIA_ERROR:
-                            console.log("Erro de mídia. Tentando recuperar...");
-                            hls.recoverMediaError();
-                            break;
-                        default:
-                            console.log("Erro fatal irre recuperação automática.");
-                            hls.destroy();
-                            break;
-                    }
-                }
+            mpegtsPlayer.attachMediaElement(videoElement);
+            mpegtsPlayer.load();
+            
+            mpegtsPlayer.on(mpegts.Events.ERROR, (errorType, errorDetail) => {
+                console.log("Erro no player mpegts: ", errorType, errorDetail);
             });
-        } 
-        // Para navegadores com suporte nativo a HLS (Safari)
-        else if (video.canPlayType('application/vnd.apple.mpegurl') || video.canPlayType('video/mp2t')) {
-            video.src = videoSrc;
-            video.addEventListener('loadedmetadata', function() {
-                video.play().catch(function(error) {
-                    console.log("Autoplay bloqueado pelo navegador:", error);
-                });
+
+            videoElement.play().catch(function(error) {
+                console.log("Autoplay bloqueado pelo navegador, clique no player para iniciar:", error);
             });
         } else {
-            // Tentativa direta para fallback
-            video.src = videoSrc;
-            video.load();
-            video.play().catch(function(error) {
-                console.log("Erro na reprodução direta:", error);
+            // Fallback caso o navegador necessite de carregamento padrão
+            videoElement.src = videoSrc;
+            videoElement.load();
+            videoElement.play().catch(function(error) {
+                console.log("Erro na reprodução padrão:", error);
             });
         }
     </script>
