@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Cazé TV Ao Vivo</title>
-    <!-- Importando a biblioteca mpegts.js otimizada para IPTV -->
-    <script src="https://cdn.jsdelivr.net/npm/mpegts.js@1.7.3/dist/mpegts.js"></script>
+    <!-- Importando a biblioteca HLS.js para rodar links .m3u8 direto no navegador -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         body { 
             margin: 0; 
@@ -18,9 +18,9 @@
         .video-box { flex: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
         /* Player ajustado para ficar travado e limpo */
-        .player-container { width: 80%; height: 500px; border-radius: 15px; border: 4px solid #fff; overflow: hidden; background: #000; position: relative; display: flex; align-items: center; justify-content: center; }
+        .player-container { width: 80%; height: 500px; border-radius: 15px; border: 4px solid #fff; overflow: hidden; background: #000; }
         
-        /* Estilização do player de vídeo */
+        /* Estilização do player de vídeo nativo */
         video { width: 100%; height: 100%; object-fit: cover; }
         
         .sidebar { 
@@ -48,7 +48,7 @@
     <div class="video-box">
         <h2>Cazé TV AO VIVO</h2>
         
-        <!-- Player Integrado -->
+        <!-- Player Integrado com suporte a HLS -->
         <div class="player-container">
             <video id="videoPlayer" controls autoplay playsinline></video>
         </div>
@@ -85,37 +85,28 @@
         </div>
     </div>
 
-    <!-- Script com contorno de CORS e tratamento ideal para .ts -->
+    <!-- Script que faz o player funcionar automaticamente -->
     <script>
-        var videoElement = document.getElementById('videoPlayer');
+        var video = document.getElementById('videoPlayer');
         var videoSrc = 'https://amg01391-amg01391c10-tcl-br-9630.playouts.now.amagi.tv/720p-cc/index.m3u8';
 
-        if (mpegts.getFeatureList().mseLivePlayback) {
-            var playerOptions = {
-                type: 'mpegts',
-                isLive: true,
-                url: videoSrc,
-                cors: true, // Força a permissão de acesso cruzado de servidores IPTV
-                accurateSeek: false,
-                stashInitialSize: 128 * 1024 // Reduz o buffer inicial para abrir mais rápido
-            };
-
-            var mpegtsPlayer = mpegts.createPlayer(playerOptions);
-            mpegtsPlayer.attachMediaElement(videoElement);
-            mpegtsPlayer.load();
-            
-            mpegtsPlayer.on(mpegts.Events.ERROR, function(errorType, errorDetail) {
-                console.warn("Aviso do player mpegts:", errorType, errorDetail);
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                video.play().catch(function(error) {
+                    console.log("Autoplay bloqueado pelo navegador, aguardando interação:", error);
+                });
             });
-
-            videoElement.play().catch(function(error) {
-                console.log("Autoplay retido pelo navegador, clique no player para reproduzir:", error);
-            });
-        } else {
-            videoElement.src = videoSrc;
-            videoElement.load();
-            videoElement.play().catch(function(error) {
-                console.log("Erro na reprodução padrão:", error);
+        } 
+        // Para dispositivos que já possuem suporte nativo a HLS (como Safari no iPhone/Mac)
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+            video.addEventListener('loadedmetadata', function() {
+                video.play().catch(function(error) {
+                    console.log("Autoplay bloqueado pelo navegador:", error);
+                });
             });
         }
     </script>
