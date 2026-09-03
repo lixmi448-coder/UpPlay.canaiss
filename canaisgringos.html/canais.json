@@ -262,5 +262,10 @@
         "Interactivo Television": "https://mist01.homestream.fun/hls/interactivotv/index.m3u8",
         "Palenque TV": "https://tv.bitstreaming.net:3234/live/palenquetvlive.m3u8",
         "Poder de Dios TV": "https://s3.tvdatta.com:3846/live/poderdedioslive.m3u8"
+    },
+    "BQ": {
+        "Bonaire.tv": "https://media.streambrothers.com:1936/8506/8506/playlist.m3u8",
+        "Energia TV": "https://sincerecloud.stream/loadbalancer/public/actMdyoE.m3u8",
+        "Live99FM": "https://media.streambrothers.com:1936/8014/8014/playlist.m3u8"
     }
 }
